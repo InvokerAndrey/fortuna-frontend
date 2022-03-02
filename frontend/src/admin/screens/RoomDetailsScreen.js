@@ -25,6 +25,10 @@ export default () => {
     const roomPlayers = useSelector(state => state.roomPlayers)
     const {loading: playersLoading, error: playersError, players} = roomPlayers
 
+    console.log(id)
+    console.log(room)
+    console.log(players)
+
     const listGroupStyles = {
         maxHeight: '500px',
         marginBottom: '10px',

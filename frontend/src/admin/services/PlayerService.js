@@ -14,13 +14,24 @@ export default class PlayerService {
     BASE_URL = 'api/users/player/'
     LIST_URL = this.BASE_URL + 'list/'
 
-    listPlayers = () => async (dispatch) => {
+    listPlayers = () => async (dispatch, getState) => {
         try {
             dispatch({
                 type: PLAYER_LIST_REQUEST,
             })
 
-            const {data} = await axios.get(this.LIST_URL)
+            const {
+                userLogin: {userInfo}
+            } = getState()
+
+            const config = {
+                headers: {
+                    'Content-type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            }
+
+            const {data} = await axios.get(this.LIST_URL, config)
 
             dispatch({
                 type: PLAYER_LIST_SUCCESS,
@@ -29,20 +40,31 @@ export default class PlayerService {
         } catch (error) {
             dispatch({
                 type: PLAYER_LIST_FAIL,
-                payload: error.response && error.response.data.message
-                    ? error.response.data.message
+                payload: error.response && error.response.data.details
+                    ? error.response.data.details
                         : error.message,
             })
         }
     }
 
-    getPlayerDetails = (id) => async (dispatch) => {
+    getPlayerDetails = (id) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: PLAYER_DETAILS_REQUEST,
             })
 
-            const {data} = await axios.get(this.BASE_URL + `${id}`)
+            const {
+                userLogin: {userInfo}
+            } = getState()
+
+            const config = {
+                headers: {
+                    'Content-type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            }
+
+            const {data} = await axios.get(this.BASE_URL + `${id}`, config)
 
             dispatch({
                 type: PLAYER_DETAILS_SUCCESS,
@@ -51,8 +73,8 @@ export default class PlayerService {
         } catch (error) {
             dispatch({
                 type: PLAYER_DETAILS_FAIL,
-                payload: error.response && error.response.data.message
-                    ? error.response.data.message
+                payload: error.response && error.response.data.details
+                    ? error.response.data.details
                         : error.message,
             })
         }

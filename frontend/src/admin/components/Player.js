@@ -13,7 +13,6 @@ export default ({ player }) => {
                     </Card.Title>
                 </Link>
                 <Card.Text>
-                    <p>username: <strong>{player.user.username}</strong></p>
                     <p>email: <strong>{player.user.email}</strong></p>
                     <p>rate: <strong>{player.rate}%</strong></p>
                 </Card.Text>

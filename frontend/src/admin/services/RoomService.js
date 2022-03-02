@@ -19,13 +19,24 @@ export default class RoomService {
     LIST_URL = 'list/'
     PLAYERS_URL = 'players/'
 
-    listRooms = () => async (dispatch) => {
+    listRooms = () => async (dispatch, getState) => {
         try {
             dispatch({
                 type: ROOM_LIST_REQUEST,
             })
 
-            const {data} = await axios.get(this.BASE_URL + this.LIST_URL)
+            const {
+                userLogin: {userInfo}
+            } = getState()
+
+            const config = {
+                headers: {
+                    'Content-type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            }
+
+            const {data} = await axios.get(this.BASE_URL + this.LIST_URL, config)
 
             dispatch({
                 type: ROOM_LIST_SUCCESS,
@@ -34,20 +45,31 @@ export default class RoomService {
         } catch (error) {
             dispatch({
                 type: ROOM_LIST_FAIL,
-                payload: error.response && error.response.data.message
-                    ? error.response.data.message
+                payload: error.response && error.response.data.details
+                    ? error.response.data.details
                         : error.message,
             })
         }
     }
 
-    getRoomDetails = (id) => async (dispatch) => {
+    getRoomDetails = (id) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: ROOM_DETAILS_REQUEST,
             })
 
-            const {data} = await axios.get(this.BASE_URL + `${id}`)
+            const {
+                userLogin: {userInfo}
+            } = getState()
+
+            const config = {
+                headers: {
+                    'Content-type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            }
+
+            const {data} = await axios.get(this.BASE_URL + `${id}`, config)
 
             dispatch({
                 type: ROOM_DETAILS_SUCCESS,
@@ -56,20 +78,31 @@ export default class RoomService {
         } catch (error) {
             dispatch({
                 type: ROOM_DETAILS_FAIL,
-                payload: error.response && error.response.data.message
-                    ? error.response.data.message
+                payload: error.response && error.response.data.details
+                    ? error.response.data.details
                         : error.message,
             })
         }
     }
 
-    getRoomPlayers = (id) => async (dispatch) => {
+    getRoomPlayers = (id) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: ROOM_PLAYERS_REQUEST,
             })
 
-            const {data} = await axios.get(this.BASE_URL + `${id}/` + this.PLAYERS_URL)
+            const {
+                userLogin: {userInfo}
+            } = getState()
+
+            const config = {
+                headers: {
+                    'Content-type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            }
+
+            const {data} = await axios.get(this.BASE_URL + `${id}/` + this.PLAYERS_URL, config)
 
             dispatch({
                 type: ROOM_PLAYERS_SUCCESS,
@@ -78,8 +111,8 @@ export default class RoomService {
         } catch (error) {
             dispatch({
                 type: ROOM_PLAYERS_FAIL,
-                payload: error.response && error.response.data.message
-                    ? error.response.data.message
+                payload: error.response && error.response.data.details
+                    ? error.response.data.details
                         : error.message,
             })
         }

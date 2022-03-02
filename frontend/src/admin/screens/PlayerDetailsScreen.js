@@ -43,7 +43,6 @@ export default () => {
                             <div>
                                 <Row>
                                     <h1>{player.user.full_name}</h1>
-                                    <h4>Username: {player.user.username}</h4>
                                     <h4>Email: {player.user.email}</h4>
                                     <h4>Rate: {player.rate}%</h4>
                                 </Row>
@@ -55,9 +54,9 @@ export default () => {
                                                 {
                                                     player.rooms.map(room => (
                                                         <ListGroup.Item key={room.id}>
-                                                            <p>{room.info.name}</p>
-                                                            <p>Nickname: {room.nickname}</p>
-                                                            <p>Balance: ${room.balance}</p>
+                                                            <strong>{room.info.name}</strong>
+                                                            <p>Nickname: <strong>{room.nickname}</strong></p>
+                                                            <p>Balance: <strong>${room.balance}</strong></p>
                                                         </ListGroup.Item>
                                                     ))
                                                 }

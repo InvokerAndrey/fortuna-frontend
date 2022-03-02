@@ -10,6 +10,9 @@ import {
     roomDetailsReducer,
     roomPlayersReducer,
 } from './admin/reducers/roomReducers'
+import { 
+    userLoginReducer,
+ } from './reducers/userReducers'
 
 
 const reducer = combineReducers({
@@ -18,9 +21,15 @@ const reducer = combineReducers({
     roomList: roomListReducer,
     roomDetails: roomDetailsReducer,
     roomPlayers: roomPlayersReducer,
+    userLogin: userLoginReducer,
 })
 
-const initialState = {}
+const userInfoFromStorage = localStorage.getItem('userInfo') ?
+    JSON.parse(localStorage.getItem('userInfo')) : null
+
+const initialState = {
+    userLogin: {userInfo: userInfoFromStorage}
+}
 
 const middleware = [thunk]
 
