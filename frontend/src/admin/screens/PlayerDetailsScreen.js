@@ -42,9 +42,9 @@ export default () => {
                         :
                             <div>
                                 <Row>
-                                    <h1>{player.user.full_name}</h1>
-                                    <h4>Email: {player.user.email}</h4>
-                                    <h4>Rate: {player.rate}%</h4>
+                                    <h2>{player.user.full_name}</h2>
+                                    <p>Email: {player.user.email}</p>
+                                    <p>Rate: {player.rate}%</p>
                                 </Row>
                                 <Accordion className='my-2' alwaysOpen flush>
                                     <Accordion.Item eventKey='0'>
@@ -100,6 +100,9 @@ export default () => {
                                 </Accordion>
                             </div>
             }
+            <Button className='btn btn-dark my-3' onClick={() => navigate(`/players/${id}/edit`)}>
+                Edit
+            </Button>
         </div>
     )
 }

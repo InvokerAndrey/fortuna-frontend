@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import {
     playerListReducer,
     playerDetailsReducer,
+    playerUpdateReducer,
 } from './admin/reducers/playerReducers'
 import {
     roomListReducer,
@@ -12,16 +13,24 @@ import {
 } from './admin/reducers/roomReducers'
 import { 
     userLoginReducer,
- } from './reducers/userReducers'
+} from './reducers/userReducers'
+
+import {
+    adminListReducer,
+    adminDetailsReducer
+} from './admin/reducers/adminReducers'
 
 
 const reducer = combineReducers({
     playerList: playerListReducer,
     playerDetails: playerDetailsReducer,
+    playerUpdate: playerUpdateReducer,
     roomList: roomListReducer,
     roomDetails: roomDetailsReducer,
     roomPlayers: roomPlayersReducer,
     userLogin: userLoginReducer,
+    adminList: adminListReducer,
+    adminDetails: adminDetailsReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ?
