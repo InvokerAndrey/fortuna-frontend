@@ -1,10 +1,16 @@
-import React, { useEffect } from "react";
-import { Row, Col } from 'react-bootstrap'
-import Player from '../components/Player'
-import PlayerService from "../services/PlayerService";
+import React, { useEffect } from 'react'
+
 import { useDispatch, useSelector } from 'react-redux'
+
+import { Row, Col, Button } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
+
+import PlayerService from '../services/PlayerService'
+import Players from '../components/Players'
+
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
+
 
 
 export default () => {
@@ -20,22 +26,30 @@ export default () => {
         dispatch(playerService.listPlayers())
     }, [dispatch])
 
+    const deleteHandler = (id, full_name) => {
+        if (window.confirm(`Are you sure you want to delete ${full_name}?`)){
+            dispatch(playerService.delete(id))
+        }
+    }
+
     return (
         <div>
-            <h1>Players</h1>
+            <Row>
+                <Col>
+                    <h1>Players</h1>
+                </Col>
+                <Col style={{textAlign: "right"}}>
+                    <LinkContainer to={'/register/player'}>
+                        <Button variant='dark'>Register new Player</Button>
+                    </LinkContainer>
+                </Col>
+            </Row>
             {
                 loading ? <h2><Loader /></h2>
                     : error ? <Message variant='danger'>{error}</Message> 
                         :
-                        <Row>
-                            {players.map(player => (
-                                <Col sm={12} md={6} lg={4} xl={3} key={player.id}>
-                                    <Player player={player} />
-                                </Col>
-                            ))}
-                        </Row>
+                        <Players players={players} deleteHandler={deleteHandler} />
             }
-            
         </div>
     )
 }

@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+
+import { Form, Button } from 'react-bootstrap'
+
+import UserService from '../services/UserService'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
-import UserService from "../services/UserService";
 
 
 export default () => {
@@ -27,7 +29,7 @@ export default () => {
 
     useEffect(() => {
         if (userInfo) {
-            navigate(redirect)
+            userInfo.is_staff ? navigate('/admin') : navigate('/player')
         }
     }, [navigate, userInfo, redirect])
 

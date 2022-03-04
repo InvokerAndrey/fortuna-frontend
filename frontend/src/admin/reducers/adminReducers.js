@@ -6,6 +6,11 @@ import {
     ADMIN_DETAILS_REQUEST,
     ADMIN_DETAILS_SUCCESS,
     ADMIN_DETAILS_FAIL,
+
+    ADMIN_REGISTER_REQUEST,
+    ADMIN_REGISTER_SUCCESS,
+    ADMIN_REGISTER_FAIL,
+    ADMIN_REGISTER_RESET,
 } from '../constants/adminConstants'
 
 
@@ -31,6 +36,22 @@ export const adminDetailsReducer = (state={admin:{user:{}, fund:{}}}, action) =>
             return {loading: false, admin: action.payload}
         case ADMIN_DETAILS_FAIL:
             return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+
+export const adminRegisterReducer = (state={}, action) => {
+    switch(action.type) {
+        case ADMIN_REGISTER_REQUEST:
+            return {loading: true}
+        case ADMIN_REGISTER_SUCCESS:
+            return {loading: false, success: true}
+        case ADMIN_REGISTER_FAIL:
+            return {loading: false, error: action.payload}
+        case ADMIN_REGISTER_RESET:
+            return {}
         default:
             return state
     }

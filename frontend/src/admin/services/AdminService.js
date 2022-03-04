@@ -7,12 +7,17 @@ import {
     ADMIN_DETAILS_REQUEST,
     ADMIN_DETAILS_SUCCESS,
     ADMIN_DETAILS_FAIL,
+
+    ADMIN_REGISTER_REQUEST,
+    ADMIN_REGISTER_SUCCESS,
+    ADMIN_REGISTER_FAIL,
 } from '../constants/adminConstants'
 
 
 export default class AdminService {
     BASE_URL = 'api/users/admin/'
     LIST_URL = this.BASE_URL + 'list/'
+    REGISTER_URL = this.BASE_URL + 'register/'
 
     listAdmins = () => async (dispatch, getState) => {
         try {
@@ -73,6 +78,48 @@ export default class AdminService {
         } catch (error) {
             dispatch({
                 type: ADMIN_DETAILS_FAIL,
+                payload: error.response && error.response.data.details
+                    ? error.response.data.details
+                        : error.message,
+            })
+        }
+    }
+
+    register = (email, firstName, lastName, rate, password) => async (dispatch, getState) => {
+        try {
+            dispatch({
+                type: ADMIN_REGISTER_REQUEST,
+            })
+
+            const {
+                userLogin: {userInfo}
+            } = getState()
+
+            const config = {
+                headers: {
+                    'Content-type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            }
+
+            await axios.post(
+                this.REGISTER_URL,
+                {
+                    'email': email,
+                    'first_name': firstName,
+                    'last_name': lastName,
+                    'rate': rate,
+                    'password': password,
+                },
+                config
+            )
+
+            dispatch({
+                type: ADMIN_REGISTER_SUCCESS
+            })
+        } catch (error) {
+            dispatch({
+                type: ADMIN_REGISTER_FAIL,
                 payload: error.response && error.response.data.details
                     ? error.response.data.details
                         : error.message,

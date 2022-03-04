@@ -1,10 +1,16 @@
-import React, { useEffect } from "react";
-import { Row, Col } from 'react-bootstrap'
-import Admin from '../components/Admin'
-import AdminService from "../services/AdminService";
+import React, { useEffect } from 'react'
+
 import { useDispatch, useSelector } from 'react-redux'
+
+import { Row, Col, Button } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
+
+import AdminService from '../services/AdminService'
+import Admins from '../components/Admins'
+
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
+
 
 
 export default () => {
@@ -22,20 +28,22 @@ export default () => {
 
     return (
         <div>
-            <h1>Admins</h1>
+            <Row>
+                <Col>
+                    <h1>Admins</h1>
+                </Col>
+                <Col style={{textAlign: "right"}}>
+                    <LinkContainer to={'/register/admin'}>
+                        <Button variant='dark'>Register new Admin</Button>
+                    </LinkContainer>
+                </Col>
+            </Row>
             {
                 loading ? <h2><Loader /></h2>
                     : error ? <Message variant='danger'>{error}</Message> 
                         :
-                        <Row>
-                            {admins.map(admin => (
-                                <Col sm={12} md={6} lg={4} xl={3} key={admin.id}>
-                                    <Admin admin={admin} />
-                                </Col>
-                            ))}
-                        </Row>
+                        <Admins admins={admins} />
             }
-            
         </div>
     )
 }

@@ -5,6 +5,8 @@ import {
     playerListReducer,
     playerDetailsReducer,
     playerUpdateReducer,
+    playerRegisterReducer,
+    playerDeleteReducer,
 } from './admin/reducers/playerReducers'
 import {
     roomListReducer,
@@ -14,10 +16,10 @@ import {
 import { 
     userLoginReducer,
 } from './reducers/userReducers'
-
 import {
     adminListReducer,
-    adminDetailsReducer
+    adminDetailsReducer,
+    adminRegisterReducer,
 } from './admin/reducers/adminReducers'
 
 
@@ -25,12 +27,15 @@ const reducer = combineReducers({
     playerList: playerListReducer,
     playerDetails: playerDetailsReducer,
     playerUpdate: playerUpdateReducer,
+    playerRegister: playerRegisterReducer,
+    playerDelete: playerDeleteReducer,
     roomList: roomListReducer,
     roomDetails: roomDetailsReducer,
     roomPlayers: roomPlayersReducer,
     userLogin: userLoginReducer,
     adminList: adminListReducer,
     adminDetails: adminDetailsReducer,
+    adminRegister: adminRegisterReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ?

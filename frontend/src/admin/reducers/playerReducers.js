@@ -11,6 +11,15 @@ import {
     PLAYER_UPDATE_SUCCESS,
     PLAYER_UPDATE_FAIL,
     PLAYER_UPDATE_RESET,
+
+    PLAYER_REGISTER_REQUEST,
+    PLAYER_REGISTER_SUCCESS,
+    PLAYER_REGISTER_FAIL,
+    PLAYER_REGISTER_RESET,
+
+    PLAYER_DELETE_REQUEST,
+    PLAYER_DELETE_SUCCESS,
+    PLAYER_DELETE_FAIL,
 } from '../constants/playerConstants'
 
 
@@ -52,6 +61,36 @@ export const playerUpdateReducer = (state={player:{}}, action) => {
             return {loading: false, error: action.payload}
         case PLAYER_UPDATE_RESET:
             return {player:{}}
+        default:
+            return state
+    }
+}
+
+
+export const playerRegisterReducer = (state={}, action) => {
+    switch(action.type) {
+        case PLAYER_REGISTER_REQUEST:
+            return {loading: true}
+        case PLAYER_REGISTER_SUCCESS:
+            return {loading: false, success: true}
+        case PLAYER_REGISTER_FAIL:
+            return {loading: false, error: action.payload}
+        case PLAYER_REGISTER_RESET:
+            return {}
+        default:
+            return state
+    }
+}
+
+
+export const playerDeleteReducer = (state={}, action) => {
+    switch(action.type) {
+        case PLAYER_DELETE_REQUEST:
+            return {loading: true}
+        case PLAYER_DELETE_SUCCESS:
+            return {loading: false, success: true}
+        case PLAYER_DELETE_FAIL:
+            return {loading: false, error: action.payload}
         default:
             return state
     }

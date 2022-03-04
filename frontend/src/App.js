@@ -1,19 +1,30 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import React from 'react'
+
 import { useSelector } from 'react-redux'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+import { Container } from 'react-bootstrap'
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 import Header from './components/Header'
 import Footer from './components/Footer'
+
+import HomeScreen from './admin/screens/HomeScreen'
+
+import LoginScreen from './screens/LoginScreen'
+
 import PlayerListScreen from './admin/screens/PlayerListScreen'
 import PlayerDetailsScreen from './admin/screens/PlayerDetailsScreen'
 import PlayerEditScreen from './admin/screens/PlayerEditScreen'
+import PlayerRegisterScreen from './admin/screens/PlayerRegisterScreen'
+
 import AdminListScreen from './admin/screens/AdminListScreen'
 import AdminDetailsScreen from './admin/screens/AdminDetailsScreen'
+import AdminRegisterScreen from './admin/screens/AdminRegisterScreen'
+
 import RoomListScreen from './admin/screens/RoomListScreen'
 import RoomDetailsScreen from './admin/screens/RoomDetailsScreen'
-import HomeScreen from './admin/screens/HomeScreen'
-import LoginScreen from './screens/LoginScreen'
-import { Container } from 'react-bootstrap'
 
 
 function App() {
@@ -30,13 +41,15 @@ function App() {
             { 
               userInfo && userInfo.is_staff && (
                 <>
-                  <Route path='/' element={<HomeScreen />} />
-                  <Route path='/players' element={<PlayerListScreen />} />
-                  <Route path='/players/:id' element={<PlayerDetailsScreen />} />
-                  <Route path='/players/:id/edit' element={<PlayerEditScreen />} />
-                  <Route path='/rooms' element={<RoomListScreen />} />
-                  <Route path='/rooms/:id' element={<RoomDetailsScreen />} />
-                  <Route path='/admins' element={<AdminListScreen />} />
+                  <Route path='/admin' element={<HomeScreen />} />
+                  <Route path='/admin/players' element={<PlayerListScreen />} />
+                  <Route path='/admin/players/:id' element={<PlayerDetailsScreen />} />
+                  <Route path='/admin/players/:id/edit' element={<PlayerEditScreen />} />
+                  <Route path='/admin/rooms' element={<RoomListScreen />} />
+                  <Route path='/admin/rooms/:id' element={<RoomDetailsScreen />} />
+                  <Route path='/admin/admins' element={<AdminListScreen />} />
+                  <Route path='/register/admin' element={<AdminRegisterScreen />} />
+                  <Route path='/register/player' element={<PlayerRegisterScreen />} />
                 </>
               )
             }

@@ -1,8 +1,11 @@
 import React from 'react'
+
 import { useDispatch, useSelector } from 'react-redux'
+
 import { Navbar, Container, Nav } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import UserService from "../services/UserService";
+
+import UserService from '../services/UserService'
 
 
 export default () => {
@@ -21,8 +24,8 @@ export default () => {
     return (
         <Navbar bg="dark" variant='dark' expand="lg" collapseOnSelect>
             <Container>
-                <LinkContainer to='/'>
-                    <Navbar.Brand href="#home">FortunaPoker</Navbar.Brand>
+                <LinkContainer to={!userInfo ? '/' : !userInfo.is_staff ? '/player' : '/admin'}>
+                    <Navbar.Brand>FortunaPoker</Navbar.Brand>
                 </LinkContainer>
                 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -31,14 +34,17 @@ export default () => {
                     {
                         userInfo && userInfo.is_staff && (
                             <>
-                                <LinkContainer to='/players'>
+                                <LinkContainer to='/admin/profile'>
+                                    <Nav.Link>Profile</Nav.Link>
+                                </LinkContainer>
+                                <LinkContainer to='/admin/admins'>
+                                    <Nav.Link>Admins</Nav.Link>
+                                </LinkContainer>
+                                <LinkContainer to='/admin/players'>
                                     <Nav.Link>Players</Nav.Link>
                                 </LinkContainer>
-                                <LinkContainer to='/rooms'>
+                                <LinkContainer to='/admin/rooms'>
                                     <Nav.Link>Rooms</Nav.Link>
-                                </LinkContainer>
-                                <LinkContainer to='/admins'>
-                                    <Nav.Link>Admins</Nav.Link>
                                 </LinkContainer>
                             </>
                         )
@@ -57,7 +63,9 @@ export default () => {
                                 </LinkContainer>
                             </>
                         )
-                    }
+                    }              
+                </Nav>
+                <Nav className="justify-content-end">
                     {
                         userInfo ? (
                             <Nav.Link onClick={logoutHandler} className='mr-auto'>Logout</Nav.Link>
@@ -66,7 +74,7 @@ export default () => {
                                 <Nav.Link>Login</Nav.Link>
                             </LinkContainer>
                         )
-                    }                    
+                    } 
                 </Nav>
                 </Navbar.Collapse>
             </Container>

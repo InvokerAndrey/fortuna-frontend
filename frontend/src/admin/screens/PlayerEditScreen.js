@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
-import { PLAYER_UPDATE_RESET } from "../constants/playerConstants";
-import PlayerService from "../services/PlayerService";
+
+import { Form, Button } from 'react-bootstrap'
+
+import { PLAYER_UPDATE_RESET } from '../constants/playerConstants'
+
+import PlayerService from '../services/PlayerService'
+
 import FormContainer from '../../components/FormContainer'
-import Loader from "../../components/Loader";
-import Message from "../../components/Message";
-import { Form, Button } from "react-bootstrap";
+import Loader from '../../components/Loader'
+import Message from '../../components/Message'
+
 
 
 export default () => {

@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from 'react'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
-import { Row, Col, Button, Accordion, ListGroup } from 'react-bootstrap'
+
+import { Row, Col, Button, Tabs, Tab } from 'react-bootstrap'
 
 import PlayerService from '../services/PlayerService'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
+import PlayerRooms from '../components/PlayerRooms'
+import RoomTransactions from '../components/RoomTransactions'
+import PlayerTransactions from '../components/PlayerTransactions'
 
 
 export default () => {
@@ -31,78 +36,71 @@ export default () => {
         dispatch(playerService.getPlayerDetails(id))
     }, [dispatch])
 
+    const deleteHandler = (id, full_name) => {
+        if(window.confirm(`Are you sure you want to delete ${full_name}?`)){
+            // dispatch(deleteUser(id))
+            console.log(id)
+        }
+    }
+
     return (
         <div>
-            <Button className='btn btn-dark my-3' onClick={() => navigate(-1)}>
-                Back
-            </Button>
+            <Row>
+                <Col md={10}>
+                    <Button className='btn btn-dark my-3' onClick={() => navigate(-1)}>
+                        Back
+                    </Button>
+                </Col>
+                <Col>
+                    <Button className='btn btn-dark my-3' onClick={() => navigate(`/players/${id}/edit`)}>
+                        Edit
+                    </Button>
+                </Col>
+                <Col>
+                    <Button
+                        className='btn btn-dark my-3'
+                        onClick={() => deleteHandler(player.id, player.user.full_name)}
+                        style={{color: 'red'}}
+                    >
+                        Delete
+                    </Button>
+                </Col>
+            </Row>
+            
             {
                 loading ? <Loader />
                     : error ? <Message variant='danger'>{error}</Message>
                         :
-                            <div>
-                                <Row>
-                                    <h2>{player.user.full_name}</h2>
-                                    <p>Email: {player.user.email}</p>
-                                    <p>Rate: {player.rate}%</p>
+                            <>
+                                <Row className='my-4'>
+                                    <Col>
+                                        <h1>{player.user.full_name}</h1>
+                                    </Col>
+                                    <Col style={{fontWeight: 'bold'}}>
+                                        <Row>
+                                            <Col md={2}>EMAIL:</Col>
+                                            <Col>{player.user.email}</Col>
+                                        </Row>
+                                        <Row>
+                                            <Col md={2}>RATE:</Col>
+                                            <Col>{player.rate}%</Col>
+                                        </Row>
+                                    </Col>
                                 </Row>
-                                <Accordion className='my-2' alwaysOpen flush>
-                                    <Accordion.Item eventKey='0'>
-                                        <Accordion.Header>Rooms</Accordion.Header>
-                                        <Accordion.Body>
-                                            <ListGroup as='div' variant='flush' style={listGroupStyles}>
-                                                {
-                                                    player.rooms.map(room => (
-                                                        <ListGroup.Item key={room.id}>
-                                                            <strong>{room.info.name}</strong>
-                                                            <p>Nickname: <strong>{room.nickname}</strong></p>
-                                                            <p>Balance: <strong>${room.balance}</strong></p>
-                                                        </ListGroup.Item>
-                                                    ))
-                                                }
-                                            </ListGroup>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
 
-                                    <Accordion.Item eventKey='1'>
-                                        <Accordion.Header>Room Transactions</Accordion.Header>
-                                        <Accordion.Body>
-                                            <ListGroup variant='flush' style={listGroupStyles}>
-                                                {
-                                                    player.room_transactions.map(transaction => (
-                                                        <ListGroup.Item key={transaction.id}>
-                                                            <strong>{transaction.type}</strong>
-                                                            <p>${transaction.amount}</p>
-                                                            <small>{transaction.created_at}</small>
-                                                        </ListGroup.Item>
-                                                    ))
-                                                }
-                                            </ListGroup>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
-
-                                    <Accordion.Item eventKey='2'>
-                                        <Accordion.Header>Player Transactions</Accordion.Header>
-                                        <Accordion.Body>
-                                            <ListGroup variant='flush' style={listGroupStyles}>
-                                                {
-                                                    player.room_transactions.map(transaction => (
-                                                        <ListGroup.Item key={transaction.id}>
-                                                            <strong>{transaction.type}</strong>
-                                                            <p>${transaction.amount}</p>
-                                                            <small>{transaction.created_at}</small>
-                                                        </ListGroup.Item>
-                                                    ))
-                                                }
-                                            </ListGroup>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
-                                </Accordion>
-                            </div>
+                                <Tabs defaultActiveKey='rooms' id='player-details' className='mb-3'>
+                                    <Tab eventKey='rooms' title='Rooms'>
+                                        <PlayerRooms player={player}/>
+                                    </Tab>
+                                    <Tab eventKey='room_transactions' title='Room Transactions'>
+                                        <RoomTransactions player={player} />
+                                    </Tab>
+                                    <Tab eventKey='player_transactions' title='Player Transactions'>
+                                        <PlayerTransactions player={player} />
+                                    </Tab>
+                                </Tabs>
+                            </>
             }
-            <Button className='btn btn-dark my-3' onClick={() => navigate(`/players/${id}/edit`)}>
-                Edit
-            </Button>
         </div>
     )
 }
