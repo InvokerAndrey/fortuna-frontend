@@ -3,12 +3,9 @@ import React from 'react'
 import { Table, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
-import { FaTrash, FaUserEdit } from 'react-icons/fa'
+import { FaTrash } from 'react-icons/fa'
 import { ImProfile } from 'react-icons/im'
 import { FcPlus } from 'react-icons/fc'
-
-import PlayerService from '../services/PlayerService'
-
 
 
 export default ({ player }) => {

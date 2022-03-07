@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
-import AdminService from '../services/AdminService'
-import Admins from '../components/Admins'
+import AdminService from '../../services/AdminService'
+import Admins from '../../components/Admins'
 
-import Loader from '../../components/Loader'
-import Message from '../../components/Message'
+import Loader from '../../../components/Loader'
+import Message from '../../../components/Message'
 
 
 

@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
-import RoomService from '../services/RoomService'
-import Rooms from '../components/Rooms'
+import RoomService from '../../services/RoomService'
+import Rooms from '../../components/Rooms'
 
-import Loader from '../../components/Loader'
-import Message from '../../components/Message'
+import Loader from '../../../components/Loader'
+import Message from '../../../components/Message'
 
 
 export default () => {
@@ -19,16 +19,18 @@ export default () => {
     const dispatch = useDispatch()
 
     const roomList = useSelector(state => state.roomList)   
-    const {loading, error, rooms} = roomList 
+    const {loading, error, rooms} = roomList
+
+    const roomDelete = useSelector(state => state.roomDelete)
+    const {success: successDelete} = roomDelete
 
     useEffect(() => {
         dispatch(roomService.listRooms())
-    }, [dispatch])
+    }, [dispatch, successDelete])
 
     const deleteHandler = (id, name) => {
         if(window.confirm(`Are you sure you want to delete ${name}?`)){
-            // dispatch(deleteRoom(id))
-            console.log(id)
+            dispatch(roomService.deleteRoom(id))
         }
     }
 
@@ -39,7 +41,7 @@ export default () => {
                     <h1>Rooms</h1>
                 </Col>
                 <Col style={{textAlign: "right"}}>
-                    <LinkContainer to={'/register/player'}>
+                    <LinkContainer to={'/add/room'}>
                         <Button variant='dark'>Add new room</Button>
                     </LinkContainer>
                 </Col>
@@ -48,7 +50,7 @@ export default () => {
                 loading ? <h2><Loader /></h2>
                     : error ? <Message variant='danger'>{error}</Message> 
                         :
-                        <Rooms rooms={rooms} />
+                        <Rooms rooms={rooms} deleteHandler={deleteHandler} />
             }
         </div>
     )

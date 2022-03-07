@@ -5,13 +5,13 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 import { Form, Button } from 'react-bootstrap'
 
-import { PLAYER_UPDATE_RESET } from '../constants/playerConstants'
+import { PLAYER_UPDATE_RESET } from '../../constants/playerConstants'
 
-import PlayerService from '../services/PlayerService'
+import PlayerService from '../../services/PlayerService'
 
-import FormContainer from '../../components/FormContainer'
-import Loader from '../../components/Loader'
-import Message from '../../components/Message'
+import FormContainer from '../../../components/FormContainer'
+import Loader from '../../../components/Loader'
+import Message from '../../../components/Message'
 
 
 

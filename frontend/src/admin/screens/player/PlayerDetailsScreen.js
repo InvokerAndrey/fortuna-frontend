@@ -5,12 +5,12 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 import { Row, Col, Button, Tabs, Tab } from 'react-bootstrap'
 
-import PlayerService from '../services/PlayerService'
-import Loader from '../../components/Loader'
-import Message from '../../components/Message'
-import PlayerRooms from '../components/PlayerRooms'
-import RoomTransactions from '../components/RoomTransactions'
-import PlayerTransactions from '../components/PlayerTransactions'
+import PlayerService from '../../services/PlayerService'
+import Loader from '../../../components/Loader'
+import Message from '../../../components/Message'
+import PlayerRooms from '../../components/PlayerRooms'
+import RoomTransactions from '../../components/RoomTransactions'
+import PlayerTransactions from '../../components/PlayerTransactions'
 
 
 export default () => {
@@ -25,12 +25,6 @@ export default () => {
 
     const playerDetails = useSelector(state => state.playerDetails)
     const {loading, error, player} = playerDetails
-
-    const listGroupStyles = {
-        maxHeight: '500px',
-        marginBottom: '10px',
-        overflowY: 'auto',
-    }
 
     useEffect(() => {
         dispatch(playerService.getPlayerDetails(id))

@@ -10,6 +10,14 @@ import {
     ROOM_PLAYERS_REQUEST,
     ROOM_PLAYERS_SUCCESS,
     ROOM_PLAYERS_FAIL,
+
+    ROOM_ADD_REQUEST,
+    ROOM_ADD_SUCCESS,
+    ROOM_ADD_FAIL,
+
+    ROOM_DELETE_REQUEST,
+    ROOM_DELETE_SUCCESS,
+    ROOM_DELETE_FAIL,
 } from '../constants/roomConstants'
 
 
@@ -47,6 +55,34 @@ export const roomPlayersReducer = (state={players:[]}, action) => {
         case ROOM_PLAYERS_SUCCESS:
             return {loading: false, players: action.payload}
         case ROOM_PLAYERS_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+
+export const roomAddReducer = (state={}, action) => {
+    switch(action.type) {
+        case ROOM_ADD_REQUEST:
+            return {loading: true}
+        case ROOM_ADD_SUCCESS:
+            return {loading: false, success: true}
+        case ROOM_ADD_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+
+export const roomDeleteReducer = (state={}, action) => {
+    switch(action.type) {
+        case ROOM_DELETE_REQUEST:
+            return {loading: true}
+        case ROOM_DELETE_SUCCESS:
+            return {loading: false, success: true}
+        case ROOM_DELETE_FAIL:
             return {loading: false, error: action.payload}
         default:
             return state

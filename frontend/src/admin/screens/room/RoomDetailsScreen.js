@@ -5,10 +5,10 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 
 import { Row, Button, Accordion, ListGroup } from 'react-bootstrap'
 
-import RoomService from '../services/RoomService'
+import RoomService from '../../services/RoomService'
 
-import Loader from '../../components/Loader'
-import Message from '../../components/Message'
+import Loader from '../../../components/Loader'
+import Message from '../../../components/Message'
 
 
 export default () => {

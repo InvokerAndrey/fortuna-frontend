@@ -12,6 +12,8 @@ import {
     roomListReducer,
     roomDetailsReducer,
     roomPlayersReducer,
+    roomAddReducer,
+    roomDeleteReducer,
 } from './admin/reducers/roomReducers'
 import { 
     userLoginReducer,
@@ -29,9 +31,13 @@ const reducer = combineReducers({
     playerUpdate: playerUpdateReducer,
     playerRegister: playerRegisterReducer,
     playerDelete: playerDeleteReducer,
+
     roomList: roomListReducer,
     roomDetails: roomDetailsReducer,
     roomPlayers: roomPlayersReducer,
+    roomDelete: roomDeleteReducer,
+    roomAdd: roomAddReducer,
+
     userLogin: userLoginReducer,
     adminList: adminListReducer,
     adminDetails: adminDetailsReducer,

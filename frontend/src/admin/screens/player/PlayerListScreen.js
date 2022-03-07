@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
-import PlayerService from '../services/PlayerService'
-import Players from '../components/Players'
+import PlayerService from '../../services/PlayerService'
+import Players from '../../components/Players'
 
-import Loader from '../../components/Loader'
-import Message from '../../components/Message'
+import Loader from '../../../components/Loader'
+import Message from '../../../components/Message'
 
 
 
@@ -20,14 +20,17 @@ export default () => {
     const dispatch = useDispatch()
 
     const playerList = useSelector(state => state.playerList)   
-    const {loading, error, players} = playerList 
+    const {loading, error, players} = playerList
+
+    const playerDelete = useSelector(state => state.playerDelete)   
+    const {success: successDelete} = playerDelete 
 
     useEffect(() => {
         dispatch(playerService.listPlayers())
-    }, [dispatch])
+    }, [dispatch, successDelete])
 
     const deleteHandler = (id, full_name) => {
-        if (window.confirm(`Are you sure you want to delete ${full_name}?`)){
+        if (window.confirm(`Are you sure you want to delete ${full_name}?`)) {
             dispatch(playerService.delete(id))
         }
     }

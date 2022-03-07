@@ -14,17 +14,18 @@ import HomeScreen from './admin/screens/HomeScreen'
 
 import LoginScreen from './screens/LoginScreen'
 
-import PlayerListScreen from './admin/screens/PlayerListScreen'
-import PlayerDetailsScreen from './admin/screens/PlayerDetailsScreen'
-import PlayerEditScreen from './admin/screens/PlayerEditScreen'
-import PlayerRegisterScreen from './admin/screens/PlayerRegisterScreen'
+import PlayerListScreen from './admin/screens/player/PlayerListScreen'
+import PlayerDetailsScreen from './admin/screens/player/PlayerDetailsScreen'
+import PlayerEditScreen from './admin/screens/player/PlayerEditScreen'
+import PlayerRegisterScreen from './admin/screens/player/PlayerRegisterScreen'
 
-import AdminListScreen from './admin/screens/AdminListScreen'
-import AdminDetailsScreen from './admin/screens/AdminDetailsScreen'
-import AdminRegisterScreen from './admin/screens/AdminRegisterScreen'
+import AdminListScreen from './admin/screens/admin/AdminListScreen'
+import AdminDetailsScreen from './admin/screens/admin/AdminDetailsScreen'
+import AdminRegisterScreen from './admin/screens/admin/AdminRegisterScreen'
 
-import RoomListScreen from './admin/screens/RoomListScreen'
-import RoomDetailsScreen from './admin/screens/RoomDetailsScreen'
+import RoomListScreen from './admin/screens/room/RoomListScreen'
+import RoomDetailsScreen from './admin/screens/room/RoomDetailsScreen'
+import RoomAddScreen from './admin/screens/room/RoomAddScreen'
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
                   <Route path='/admin/admins' element={<AdminListScreen />} />
                   <Route path='/register/admin' element={<AdminRegisterScreen />} />
                   <Route path='/register/player' element={<PlayerRegisterScreen />} />
+                  <Route path='/add/room' element={<RoomAddScreen />} />
                 </>
               )
             }

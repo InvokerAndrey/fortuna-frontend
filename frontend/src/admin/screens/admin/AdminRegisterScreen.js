@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router-dom'
 
 import { Form, Button } from 'react-bootstrap'
 
-import { ADMIN_REGISTER_RESET } from '../constants/adminConstants'
+import { ADMIN_REGISTER_RESET } from '../../constants/adminConstants'
 
-import AdminService from '../services/AdminService'
-import Loader from '../../components/Loader'
-import Message from '../../components/Message'
-import FormContainer from '../../components/FormContainer'
+import AdminService from '../../services/AdminService'
+import Loader from '../../../components/Loader'
+import Message from '../../../components/Message'
+import FormContainer from '../../../components/FormContainer'
 
 
 export default () => {
