@@ -25,6 +25,8 @@ import AdminListScreen from './admin/screens/admin/AdminListScreen'
 import AdminDetailsScreen from './admin/screens/admin/AdminDetailsScreen'
 import AdminRegisterScreen from './admin/screens/admin/AdminRegisterScreen'
 
+import PlayerProfileScreen from './player/screens/PlayerProfileScreen'
+
 import RoomListScreen from './admin/screens/room/RoomListScreen'
 import RoomDetailsScreen from './admin/screens/room/RoomDetailsScreen'
 import RoomAddScreen from './admin/screens/room/RoomAddScreen'
@@ -60,7 +62,10 @@ function App() {
             }
             {
               userInfo && !userInfo.is_staff && (
-                <Route path='/' element={<HomeScreen />} />
+                <>
+                  <Route path='/' element={<HomeScreen />} />
+                  <Route path='/player/profile' element={<PlayerProfileScreen />} />
+                </>
               )
             }
             

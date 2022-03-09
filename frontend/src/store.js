@@ -24,6 +24,9 @@ import {
     adminDetailsReducer,
     adminRegisterReducer,
 } from './admin/reducers/adminReducers'
+import {
+    playerProfileDetailsReducer,
+} from './player/reducers/profileReducers'
 
 
 const reducer = combineReducers({
@@ -44,6 +47,8 @@ const reducer = combineReducers({
     adminList: adminListReducer,
     adminDetails: adminDetailsReducer,
     adminRegister: adminRegisterReducer,
+
+    playerProfileDetails: playerProfileDetailsReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ?
