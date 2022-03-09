@@ -19,6 +19,8 @@ import PlayerDetailsScreen from './admin/screens/player/PlayerDetailsScreen'
 import PlayerEditScreen from './admin/screens/player/PlayerEditScreen'
 import PlayerRegisterScreen from './admin/screens/player/PlayerRegisterScreen'
 
+import AddPlayerTransactionScreen from './admin/screens/player/AddPlayerTransactionScreen'
+
 import AdminListScreen from './admin/screens/admin/AdminListScreen'
 import AdminDetailsScreen from './admin/screens/admin/AdminDetailsScreen'
 import AdminRegisterScreen from './admin/screens/admin/AdminRegisterScreen'
@@ -52,6 +54,7 @@ function App() {
                   <Route path='/register/admin' element={<AdminRegisterScreen />} />
                   <Route path='/register/player' element={<PlayerRegisterScreen />} />
                   <Route path='/add/room' element={<RoomAddScreen />} />
+                  <Route path='/add/player-transaction/:id' element={<AddPlayerTransactionScreen />} />
                 </>
               )
             }

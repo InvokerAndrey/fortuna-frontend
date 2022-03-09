@@ -5,6 +5,8 @@ import { LinkContainer } from 'react-router-bootstrap'
 
 import { FcPlus } from 'react-icons/fc'
 
+import { PlayerTransactionTypeEnum } from '../constants/playerConstants'
+
 
 export default ({ player }) => {
     return (
@@ -21,9 +23,9 @@ export default ({ player }) => {
                 {player.player_transactions.map((transaction, index) => (
                     <tr key={transaction.id}>
                         <td>{index + 1}</td>
-                        <td>{transaction.type}</td>
-                        <td>{transaction.amount}</td>
-                        <td>${transaction.created_at}</td>
+                        <td>{PlayerTransactionTypeEnum.getVerboseById(transaction.type)}</td>
+                        <td>${transaction.amount}</td>
+                        <td>{transaction.created_at}</td>
                     </tr>
                 ))}
                 <LinkContainer to={`/add/player-transaction/${player.id}`}>

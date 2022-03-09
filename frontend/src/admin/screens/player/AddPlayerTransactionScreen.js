@@ -3,24 +3,26 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, InputGroup } from 'react-bootstrap'
 
 import { PLAYER_ADD_TRANSACTION_RESET, PlayerTransactionTypeEnum } from '../../constants/playerConstants'
 
-import PlayerService from '../../services/PlayerService'
+import TransactionService from '../../services/TransactionService'
 import Loader from '../../../components/Loader'
 import Message from '../../../components/Message'
 import FormContainer from '../../../components/FormContainer'
 
 
 export default () => {
-    const playerService = new PlayerService()
+    const transactionService = new TransactionService()
 
     const dispatch = useDispatch()
 
     const navigate = useNavigate()
 
-    const { player_id } = useParams()
+    const { id } = useParams()
+
+    const player_id = id
 
     const redirect = Location.search ? Location.search.split('=')[1] : '/'
 
@@ -42,8 +44,8 @@ export default () => {
 
     useEffect(() => {
         if (successTransaction) {
-            navigate(`/admin/players/${player_id}`)
             dispatch({type: PLAYER_ADD_TRANSACTION_RESET})
+            navigate(`/admin/players/${player_id}`)
         }
     }, [dispatch, successTransaction, navigate])
 
@@ -52,17 +54,18 @@ export default () => {
         if (amount <= 0) {
             setMessage('Invalid amount')
         } else {
-            dispatch(playerService.addPlayerTransaction(player_id, type, amount))
+            console.log(player_id, type, amount)
+            dispatch(transactionService.addPlayerTransaction(player_id, type, amount))
         }
     }
 
     return (
         
         <FormContainer>
-            <h1>Register New Player</h1>
-            {errorRegister && <Message variant='danger'>{errorRegister}</Message>}
+            <h1>Add Player Transaction</h1>
+            {errorTransaction && <Message variant='danger'>{errorTransaction}</Message>}
             {message && <Message variant='danger'>{message}</Message>}
-            {loadingRegister && <Loader />}
+            {loadingTransaction && <Loader />}
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='type' className='my-4'>
                     <Form.Label>Type</Form.Label>
@@ -75,15 +78,16 @@ export default () => {
                         {
                             (PlayerTransactionTypeEnum.getIdList().concat('')).map((x) => (
                                 <option key={x} value={x}>
-                                    {TypeEnum.getVerboseById(x)}
+                                    {PlayerTransactionTypeEnum.getVerboseById(x)}
                                 </option>
                             ))
                         }
                     </Form.Control>
                 </Form.Group>
 
-                <Form.Group controlId='amount' className='my-4'>
-                    <Form.Label>Amount</Form.Label>
+                <Form.Label>Amount</Form.Label>
+                <Form.Group controlId='amount' className='input-group'>   
+                    <InputGroup.Text>$</InputGroup.Text>
                     <Form.Control
                         required
                         type='number'
