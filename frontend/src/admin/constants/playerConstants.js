@@ -1,3 +1,6 @@
+import Enum from '../../constants/enums'
+
+
 export const PLAYER_LIST_REQUEST = 'PLAYER_LIST_REQUEST'
 export const PLAYER_LIST_SUCCESS = 'PLAYER_LIST_SUCCESS'
 export const PLAYER_LIST_FAIL = 'PLAYER_LIST_FAIL'
@@ -19,3 +22,30 @@ export const PLAYER_REGISTER_RESET = 'PLAYER_REGISTER_RESET'
 export const PLAYER_DELETE_REQUEST = 'PLAYER_DELETE_REQUEST'
 export const PLAYER_DELETE_SUCCESS = 'PLAYER_DELETE_SUCCESS'
 export const PLAYER_DELETE_FAIL = 'PLAYER_DELETE_FAIL'
+export const PLAYER_DELETE_RESET = 'PLAYER_DELETE_RESET'
+
+export const PLAYER_ADD_TRANSACTION_REQUEST = 'PLAYER_ADD_TRANSACTION_REQUEST'
+export const PLAYER_ADD_TRANSACTION_SUCCESS = 'PLAYER_ADD_TRANSACTION_SUCCESS'
+export const PLAYER_ADD_TRANSACTION_FAIL = 'PLAYER_ADD_TRANSACTION_FAIL'
+export const PLAYER_ADD_TRANSACTION_RESET = 'PLAYER_ADD_TRANSACTION_RESET'
+
+
+export class PlayerTransactionTypeEnum extends Enum {
+    static obj = {
+        ADMIN_TO_PLAYER_GAME: {id: 1, verbose: 'for gambling'},
+        PLAYER_TO_ADMIN_PROFIT: {id: 2, verbose: 'profit from gambling'},
+        ADMIN_TO_PLAYER_SALARY: {id: 3, verbose: 'player salary'},
+    }
+
+    static get ADMIN_TO_PLAYER_GAME() {
+        return this.obj.ADMIN_TO_PLAYER_GAME.id
+    }
+
+    static get PLAYER_TO_ADMIN_PROFIT() {
+        return this.obj.PLAYER_TO_ADMIN_PROFIT.id
+    }
+
+    static get ADMIN_TO_PLAYER_SALARY() {
+        return this.obj.ADMIN_TO_PLAYER_SALARY.id
+    }
+}

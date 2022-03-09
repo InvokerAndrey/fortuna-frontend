@@ -15,6 +15,10 @@ import {
     PLAYER_DELETE_REQUEST,
     PLAYER_DELETE_SUCCESS,
     PLAYER_DELETE_FAIL,
+
+    PLAYER_ADD_TRANSACTION_REQUEST,
+    PLAYER_ADD_TRANSACTION_SUCCESS,
+    PLAYER_ADD_TRANSACTION_FAIL,
 } from '../constants/playerConstants'
 
 
@@ -23,6 +27,7 @@ export default class PlayerService {
     LIST_URL = this.BASE_URL + 'list/'
     REGISTER_URL = this.BASE_URL + 'register/'
     DELETE_URL = 'delete/'
+    ADD_TRANSACTION_URL = 'add/player-transaction/'
 
     listPlayers = () => async (dispatch, getState) => {
         try {
@@ -160,6 +165,46 @@ export default class PlayerService {
         } catch (error) {
             dispatch({
                 type: PLAYER_DELETE_FAIL,
+                payload: error.response && error.response.data.details
+                    ? error.response.data.details
+                        : error.message,
+            })
+        }
+    }
+
+    addPlayerTransaction = (player_id, type, amount) => async (dispatch, getState) => {
+        try {
+            dispatch({
+                type: PLAYER_ADD_TRANSACTION_REQUEST,
+            })
+
+            const {
+                userLogin: {userInfo}
+            } = getState()
+
+            const config = {
+                headers: {
+                    'Content-type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            }
+
+            await axios.post(
+                this.BASE_URL + `${player_id}/` + this.ADD_TRANSACTION_URL,
+                {
+                    player_id,
+                    type,
+                    amount
+                },
+                config
+            )
+
+            dispatch({
+                type: PLAYER_ADD_TRANSACTION_SUCCESS
+            })
+        } catch (error) {
+            dispatch({
+                type: PLAYER_ADD_TRANSACTION_FAIL,
                 payload: error.response && error.response.data.details
                     ? error.response.data.details
                         : error.message,

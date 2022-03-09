@@ -7,6 +7,7 @@ import {
     playerUpdateReducer,
     playerRegisterReducer,
     playerDeleteReducer,
+    playerAddTransactionReducer,
 } from './admin/reducers/playerReducers'
 import {
     roomListReducer,
@@ -31,6 +32,7 @@ const reducer = combineReducers({
     playerUpdate: playerUpdateReducer,
     playerRegister: playerRegisterReducer,
     playerDelete: playerDeleteReducer,
+    playerAddTransaction: playerAddTransactionReducer,
 
     roomList: roomListReducer,
     roomDetails: roomDetailsReducer,

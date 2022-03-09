@@ -20,6 +20,12 @@ import {
     PLAYER_DELETE_REQUEST,
     PLAYER_DELETE_SUCCESS,
     PLAYER_DELETE_FAIL,
+    PLAYER_DELETE_RESET,
+
+    PLAYER_ADD_TRANSACTION_REQUEST,
+    PLAYER_ADD_TRANSACTION_SUCCESS,
+    PLAYER_ADD_TRANSACTION_FAIL,
+    PLAYER_ADD_TRANSACTION_RESET,
 } from '../constants/playerConstants'
 
 
@@ -91,6 +97,24 @@ export const playerDeleteReducer = (state={}, action) => {
             return {loading: false, success: true}
         case PLAYER_DELETE_FAIL:
             return {loading: false, error: action.payload}
+        case PLAYER_DELETE_RESET:
+            return {}
+        default:
+            return state
+    }
+}
+
+
+export const playerAddTransactionReducer = (state={}, action) => {
+    switch(action.type) {
+        case PLAYER_ADD_TRANSACTION_REQUEST:
+            return {loading: true}
+        case PLAYER_ADD_TRANSACTION_SUCCESS:
+            return {loading: false, success: true}
+        case PLAYER_ADD_TRANSACTION_FAIL:
+            return {loading: false, error: action.payload}
+        case PLAYER_ADD_TRANSACTION_RESET:
+            return {}
         default:
             return state
     }

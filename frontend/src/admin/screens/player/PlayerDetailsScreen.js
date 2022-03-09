@@ -5,6 +5,8 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 import { Row, Col, Button, Tabs, Tab } from 'react-bootstrap'
 
+import { PLAYER_DELETE_RESET } from '../../constants/playerConstants'
+
 import PlayerService from '../../services/PlayerService'
 import Loader from '../../../components/Loader'
 import Message from '../../../components/Message'
@@ -26,14 +28,20 @@ export default () => {
     const playerDetails = useSelector(state => state.playerDetails)
     const {loading, error, player} = playerDetails
 
+    const playerDelete = useSelector(state => state.playerDelete)
+    const {success: successDelete} = playerDelete
+
     useEffect(() => {
         dispatch(playerService.getPlayerDetails(id))
-    }, [dispatch])
+        if (successDelete) {
+            dispatch({type: PLAYER_DELETE_RESET})
+            navigate('/admin/players')
+        }
+    }, [dispatch, successDelete])
 
     const deleteHandler = (id, full_name) => {
         if(window.confirm(`Are you sure you want to delete ${full_name}?`)){
-            // dispatch(deleteUser(id))
-            console.log(id)
+            dispatch(playerService.delete(id))
         }
     }
 
