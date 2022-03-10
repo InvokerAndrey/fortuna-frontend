@@ -10,7 +10,7 @@ export default class TransactionService {
     BASE_URL = 'api/transactions/'
     ADD_PLAYER_TRANSACTION_URL = this.BASE_URL + 'add/player-transaction/'
 
-    addPlayerTransaction = (player_id, type, amount) => async (dispatch, getState) => {
+    addPlayerTransaction = (playerId, type, amount) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: PLAYER_ADD_TRANSACTION_REQUEST,
@@ -28,8 +28,9 @@ export default class TransactionService {
             }
 
             await axios.post(
-                this.ADD_PLAYER_TRANSACTION_URL + `${player_id}/`,
+                this.ADD_PLAYER_TRANSACTION_URL,
                 {
+                    'player_id': playerId,
                     'type': type,
                     'amount': +amount,
                 },

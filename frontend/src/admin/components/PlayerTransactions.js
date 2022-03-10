@@ -9,6 +9,7 @@ import { PlayerTransactionTypeEnum } from '../../constants/enums'
 
 
 export default ({ player }) => {
+    console.log('PLAYER:', player)
     return (
         <Table hover responsive className="table-sm" style={{textAlign: 'center', verticalAlign: 'middle'}}>
             <thead>

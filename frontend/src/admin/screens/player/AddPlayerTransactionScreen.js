@@ -76,6 +76,7 @@ export default () => {
                         value={type}
                         onChange={(e) => setType(e.target.value)}
                     >
+                        <option value={''}></option>
                         {
                             [...PlayerTransactionTypeEnum.getIdList()].map((x) => (
                                 <option key={x} value={x}>
