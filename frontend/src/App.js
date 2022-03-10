@@ -26,6 +26,9 @@ import AdminDetailsScreen from './admin/screens/admin/AdminDetailsScreen'
 import AdminRegisterScreen from './admin/screens/admin/AdminRegisterScreen'
 
 import PlayerProfileScreen from './player/screens/PlayerProfileScreen'
+import RoomTransactionsScreen from './player/screens/RoomTransactionsScreen'
+import PlayerTransactionsScreen from './player/screens/PlayerTransactionsScreen'
+import AddRoomTransactionScreen from './player/screens/AddRoomTransactionScreen'
 
 import RoomListScreen from './admin/screens/room/RoomListScreen'
 import RoomDetailsScreen from './admin/screens/room/RoomDetailsScreen'
@@ -65,6 +68,9 @@ function App() {
                 <>
                   <Route path='/' element={<HomeScreen />} />
                   <Route path='/player/profile' element={<PlayerProfileScreen />} />
+                  <Route path='/player/room-transactions' element={<RoomTransactionsScreen />} />
+                  <Route path='/player/player-transactions' element={<PlayerTransactionsScreen />} />
+                  <Route path='/add/room-transaction' element={<AddRoomTransactionScreen />}/>
                 </>
               )
             }

@@ -5,8 +5,9 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { Form, Button, InputGroup } from 'react-bootstrap'
 
-import { PLAYER_ADD_TRANSACTION_RESET, PlayerTransactionTypeEnum } from '../../constants/playerConstants'
+import { PLAYER_ADD_TRANSACTION_RESET } from '../../constants/playerConstants'
 
+import { PlayerTransactionTypeEnum } from '../../../constants/enums'
 import TransactionService from '../../services/TransactionService'
 import Loader from '../../../components/Loader'
 import Message from '../../../components/Message'
@@ -76,7 +77,7 @@ export default () => {
                         onChange={(e) => setType(e.target.value)}
                     >
                         {
-                            (PlayerTransactionTypeEnum.getIdList().concat('')).map((x) => (
+                            [...PlayerTransactionTypeEnum.getIdList()].map((x) => (
                                 <option key={x} value={x}>
                                     {PlayerTransactionTypeEnum.getVerboseById(x)}
                                 </option>

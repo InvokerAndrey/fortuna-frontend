@@ -27,6 +27,14 @@ import {
 import {
     playerProfileDetailsReducer,
 } from './player/reducers/profileReducers'
+import {
+    playerRoomListReducer,
+} from './player/reducers/roomReducers'
+import {
+    roomTransactionListReducer,
+    roomTransactionAddReducer,
+    playerTransactionListReducer,
+} from './player/reducers/transactionReducers'
 
 
 const reducer = combineReducers({
@@ -49,6 +57,10 @@ const reducer = combineReducers({
     adminRegister: adminRegisterReducer,
 
     playerProfileDetails: playerProfileDetailsReducer,
+    playerRoomList: playerRoomListReducer,
+    roomTransactionList: roomTransactionListReducer,
+    roomTransactionAdd: roomTransactionAddReducer,
+    playerTransactionList: playerTransactionListReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ?

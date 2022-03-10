@@ -5,31 +5,33 @@ import { LinkContainer } from 'react-router-bootstrap'
 
 import { FcPlus } from 'react-icons/fc'
 
-import { PlayerTransactionTypeEnum } from '../../constants/enums'
+import { RoomTransactionTypeEnum } from '../../constants/enums'
 
 
-export default ({ player }) => {
-    return (
-        <Table hover responsive className="table-sm" style={{textAlign: 'center', verticalAlign: 'middle'}}>
+export default ({transactions}) => (
+    <Table hover responsive className="table-sm" style={{textAlign: 'center', verticalAlign: 'middle'}}>
             <thead>
                 <tr>
                     <th>№</th>
                     <th>TYPE</th>
                     <th>AMOUNT</th>
+                    <th>ROOM</th>
                     <th>DATE</th>
                 </tr>
             </thead>
             <tbody>
-                {player.player_transactions.map((transaction, index) => (
+                {transactions.map((transaction, index) => (
                     <tr key={transaction.id}>
                         <td>{index + 1}</td>
-                        <td>{PlayerTransactionTypeEnum.getVerboseById(transaction.type)}</td>
+                        <td>{RoomTransactionTypeEnum.getVerboseById(transaction.type)}</td>
                         <td>${transaction.amount}</td>
+                        <td>{transaction.room_name}</td>
                         <td>{transaction.created_at}</td>
                     </tr>
                 ))}
-                <LinkContainer to={`/add/player-transaction/${player.id}`}>
-                    <tr title='Add new Player Transaction'>
+                <LinkContainer to={`/add/room-transaction/`}>
+                    <tr title='Add new Room Transaction'>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -38,5 +40,4 @@ export default ({ player }) => {
                 </LinkContainer>
             </tbody>
         </Table>
-    )
-}
+)
