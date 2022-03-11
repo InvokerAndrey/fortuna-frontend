@@ -35,6 +35,10 @@ import {
     roomTransactionAddReducer,
     playerTransactionListReducer,
 } from './player/reducers/transactionReducers'
+import {
+    sessionListReducer,
+    sessionDetailsReducer,
+} from './player/reducers/sessionReducers'
 
 
 const reducer = combineReducers({
@@ -61,6 +65,9 @@ const reducer = combineReducers({
     roomTransactionList: roomTransactionListReducer,
     roomTransactionAdd: roomTransactionAddReducer,
     playerTransactionList: playerTransactionListReducer,
+
+    sessionList: sessionListReducer,
+    sessionDetails: sessionDetailsReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ?

@@ -7,6 +7,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 
 import PlayerService from '../../services/PlayerService'
 import Players from '../../components/Players'
+import Players2 from '../../components/Players2'
 
 import Loader from '../../../components/Loader'
 import Message from '../../../components/Message'
@@ -53,6 +54,7 @@ export default () => {
                         :
                         <Players players={players} deleteHandler={deleteHandler} />
             }
+            <Players2 players={players} />
         </div>
     )
 }

@@ -3,7 +3,7 @@ import React from 'react'
 import { Table, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
-import { FcStatistics } from 'react-icons/fc'
+import { AiOutlineFundView } from 'react-icons/ai'
 import { FaUserEdit } from 'react-icons/fa'
 
 
@@ -33,7 +33,7 @@ export default ({ rooms }) => (
                     </td>
                     <td>
                         <LinkContainer to={`${room.id}`}>
-                            <Button variant='white' title='Statistics'><FcStatistics /></Button>
+                            <Button variant='white' title='Statistics'><AiOutlineFundView /></Button>
                         </LinkContainer>
                     </td>
                 </tr>

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Navbar, Container, Nav } from 'react-bootstrap'
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
 import UserService from '../services/UserService'
@@ -55,12 +55,17 @@ export default () => {
                                 <LinkContainer to='/player/profile'>
                                     <Nav.Link>Profile</Nav.Link>
                                 </LinkContainer>
-                                <LinkContainer to='/player/room-transactions/'>
-                                    <Nav.Link>Room Transactions</Nav.Link>
+                                <LinkContainer to='/player/sessions'>
+                                    <Nav.Link>Sessions</Nav.Link>
                                 </LinkContainer>
-                                <LinkContainer to='/player/player-transactions/'>
-                                    <Nav.Link>Player Transactions</Nav.Link>
-                                </LinkContainer>
+                                <NavDropdown title='Transactions' id='transactions'>
+                                    <LinkContainer to='/player/room-transactions'>
+                                        <NavDropdown.Item>Room Transactions</NavDropdown.Item>
+                                    </LinkContainer>
+                                    <LinkContainer to='/player/player-transactions'>
+                                        <NavDropdown.Item>Player Transactions</NavDropdown.Item>
+                                    </LinkContainer>
+                                </NavDropdown>
                             </>
                         )
                     }              
