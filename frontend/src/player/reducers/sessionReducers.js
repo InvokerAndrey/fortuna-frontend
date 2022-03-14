@@ -11,11 +11,6 @@ import {
     SESSION_CREATE_SUCCESS,
     SESSION_CREATE_FAIL,
     SESSION_CREATE_RESET,
-
-    ROOM_SESSION_CREATE_REQUEST,
-    ROOM_SESSION_CREATE_SUCCESS,
-    ROOM_SESSION_CREATE_FAIL,
-    ROOM_SESSION_CREATE_RESET,
 } from '../constants/sessionConstants'
 
 
@@ -24,7 +19,15 @@ export const sessionListReducer = (state={sessions:[]}, action) => {
         case SESSION_LIST_REQUEST:
             return {loading: true, sessions:[]}
         case SESSION_LIST_SUCCESS:
-            return {loading: false, sessions: action.payload}
+            return {
+                loading: false,
+                sessions: action.payload.results,
+                page: action.payload.page,
+                previous: action.payload.previous,
+                next: action.payload.next,
+                count: action.payload.count,
+                num_pages: action.payload.num_pages
+            }
         case SESSION_LIST_FAIL:
             return {loading: false, error: action.payload}
         default:
@@ -56,22 +59,6 @@ export const sessionCreateReducer = (state={}, action) => {
         case SESSION_CREATE_FAIL:
             return {loading: false, error: action.payload}
         case SESSION_CREATE_RESET:
-            return {}
-        default:
-            return state
-    }
-}
-
-
-export const roomSessionCreateReducer = (state={}, action) => {
-    switch(action.type) {
-        case ROOM_SESSION_CREATE_REQUEST:
-            return {loading: true}
-        case ROOM_SESSION_CREATE_SUCCESS:
-            return {loading: false, success: true}
-        case ROOM_SESSION_CREATE_FAIL:
-            return {loading: false, error: action.payload}
-        case ROOM_SESSION_CREATE_RESET:
             return {}
         default:
             return state

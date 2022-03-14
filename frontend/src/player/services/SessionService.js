@@ -20,7 +20,7 @@ export default class SessionService {
     SESSION_DETAILS_URL = this.BASE_URL
     SESSION_CREATE_URL = this.BASE_URL + 'create/'
 
-    listPlayerSessions = () => async (dispatch, getState) => {
+    listPlayerSessions = (params={}) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: SESSION_LIST_REQUEST,
@@ -34,12 +34,13 @@ export default class SessionService {
                 headers: {
                     'Content-type': 'application/json',
                     Authorization: `Bearer ${userInfo.token}`
-                }
+                },
+                params
             }
 
             const {data} = await axios.get(
                 this.SESSION_LIST_URL,
-                config
+                config,
             )
 
             dispatch({

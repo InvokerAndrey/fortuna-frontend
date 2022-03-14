@@ -29,7 +29,7 @@ export default class RoomService {
     ADD_URL = this.BASE_URL + 'add/'
     DELETE_URL = 'delete/'
 
-    listRooms = () => async (dispatch, getState) => {
+    listRooms = (params={}) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: ROOM_LIST_REQUEST,
@@ -43,7 +43,8 @@ export default class RoomService {
                 headers: {
                     'Content-type': 'application/json',
                     Authorization: `Bearer ${userInfo.token}`
-                }
+                },
+                params
             }
 
             const {data} = await axios.get(this.LIST_URL, config)
@@ -95,7 +96,7 @@ export default class RoomService {
         }
     }
 
-    getRoomPlayers = (id) => async (dispatch, getState) => {
+    getRoomPlayers = (id, params={}) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: ROOM_PLAYERS_REQUEST,
@@ -109,7 +110,8 @@ export default class RoomService {
                 headers: {
                     'Content-type': 'application/json',
                     Authorization: `Bearer ${userInfo.token}`
-                }
+                },
+                params
             }
 
             const {data} = await axios.get(this.BASE_URL + `${id}/` + this.PLAYERS_URL, config)

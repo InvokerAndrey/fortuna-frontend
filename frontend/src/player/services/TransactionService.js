@@ -20,7 +20,7 @@ export default class TransactionService {
     PLAYER_TRANSACTION_LIST_URL = this.BASE_URL + 'player-transaction/list/'
     ROOM_TRANSACTION_ADD_URL = this.BASE_URL + 'room-transaction/add/'
 
-    listPlayerRoomTransactions = () => async (dispatch, getState) => {
+    listPlayerRoomTransactions = (params={}) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: ROOM_TRANSACTION_LIST_REQUEST,
@@ -34,7 +34,8 @@ export default class TransactionService {
                 headers: {
                     'Content-type': 'application/json',
                     Authorization: `Bearer ${userInfo.token}`
-                }
+                },
+                params
             }
 
             const {data} = await axios.get(
@@ -56,7 +57,7 @@ export default class TransactionService {
         }
     }
 
-    listPlayerPlayerTransactions = () => async (dispatch, getState) => {
+    listPlayerPlayerTransactions = (params={}) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: PLAYER_TRANSACTION_LIST_REQUEST,
@@ -70,7 +71,8 @@ export default class TransactionService {
                 headers: {
                     'Content-type': 'application/json',
                     Authorization: `Bearer ${userInfo.token}`
-                }
+                },
+                params
             }
 
             const {data} = await axios.get(

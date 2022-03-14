@@ -6,6 +6,7 @@ import SessionService from '../services/SessionService'
 import Sessions from '../components/Sessions'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
+import Pagination from '../../components/Pagination'
 
 
 export default () => {
@@ -15,7 +16,7 @@ export default () => {
     const dispatch = useDispatch()
 
     const sessionList = useSelector(state => state.sessionList)
-    const {loading, error, sessions} = sessionList
+    const {loading, error, sessions, page, num_pages} = sessionList
 
     useEffect(() => {
         dispatch(sessionService.listPlayerSessions())
@@ -28,6 +29,7 @@ export default () => {
                     : error ? <Message variant='danger'>{error}</Message>
                         : <Sessions sessions={sessions} />
             }
+            <Pagination page={page} num_pages={num_pages} callback={sessionService.listPlayerSessions} />
         </div>
     )
 }

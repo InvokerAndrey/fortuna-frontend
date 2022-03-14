@@ -6,6 +6,7 @@ import TransactionService from '../services/TransactionService'
 import PlayerTransactions from '../components/PlayerTransactions'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
+import Pagination from '../../components/Pagination'
 
 
 export default () => {
@@ -15,7 +16,7 @@ export default () => {
     const dispatch = useDispatch()
 
     const playerTransactionList = useSelector(state => state.playerTransactionList)
-    const {loading, error, playerTransactions} = playerTransactionList
+    const {loading, error, playerTransactions, page, num_pages} = playerTransactionList
 
     useEffect(() => {
         dispatch(transactionService.listPlayerPlayerTransactions())
@@ -28,6 +29,7 @@ export default () => {
                     : error ? <Message variant='danger'>{error}</Message>
                         : <PlayerTransactions transactions={playerTransactions} />
             }
+            <Pagination page={page} num_pages={num_pages} callback={transactionService.listPlayerPlayerTransactions} />
         </div>
     )
 }

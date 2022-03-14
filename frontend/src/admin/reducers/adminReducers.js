@@ -19,7 +19,15 @@ export const adminListReducer = (state={admins:[]}, action) => {
         case ADMIN_LIST_REQUEST:
             return {loading: true, admins: []}
         case ADMIN_LIST_SUCCESS:
-            return {loading: false, admins: action.payload}
+            return {
+                loading: false,
+                admins: action.payload.results,
+                page: action.payload.page,
+                previous: action.payload.previous,
+                next: action.payload.next,
+                count: action.payload.count,
+                num_pages: action.payload.num_pages,
+            }
         case ADMIN_LIST_FAIL:
             return {loading: false, error: action.payload}
         default:

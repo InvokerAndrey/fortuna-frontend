@@ -19,7 +19,7 @@ export default class AdminService {
     LIST_URL = this.BASE_URL + 'list/'
     REGISTER_URL = this.BASE_URL + 'register/'
 
-    listAdmins = () => async (dispatch, getState) => {
+    listAdmins = (params={}) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: ADMIN_LIST_REQUEST,
@@ -33,7 +33,8 @@ export default class AdminService {
                 headers: {
                     'Content-type': 'application/json',
                     Authorization: `Bearer ${userInfo.token}`
-                }
+                },
+                params
             }
 
             const {data} = await axios.get(this.LIST_URL, config)

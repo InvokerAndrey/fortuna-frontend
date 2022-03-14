@@ -25,7 +25,7 @@ export default class PlayerService {
     DELETE_URL = 'delete/'
     ADD_TRANSACTION_URL = 'add/player-transaction/'
 
-    listPlayers = () => async (dispatch, getState) => {
+    listPlayers = (params={}) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: PLAYER_LIST_REQUEST,
@@ -39,7 +39,8 @@ export default class PlayerService {
                 headers: {
                     'Content-type': 'application/json',
                     Authorization: `Bearer ${userInfo.token}`
-                }
+                },
+                params
             }
 
             const {data} = await axios.get(this.LIST_URL, config)

@@ -11,6 +11,7 @@ import Players2 from '../../components/Players2'
 
 import Loader from '../../../components/Loader'
 import Message from '../../../components/Message'
+import Pagination from '../../../components/Pagination'
 
 
 
@@ -21,7 +22,7 @@ export default () => {
     const dispatch = useDispatch()
 
     const playerList = useSelector(state => state.playerList)   
-    const {loading, error, players} = playerList
+    const {loading, error, players, page, num_pages} = playerList
 
     const playerDelete = useSelector(state => state.playerDelete)   
     const {success: successDelete} = playerDelete 
@@ -54,6 +55,7 @@ export default () => {
                         :
                         <Players players={players} deleteHandler={deleteHandler} />
             }
+            <Pagination page={page} num_pages={num_pages} callback={playerService.listPlayers} />
             <Players2 players={players} />
         </div>
     )

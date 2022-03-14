@@ -26,7 +26,15 @@ export const roomListReducer = (state={rooms:[]}, action) => {
         case ROOM_LIST_REQUEST:
             return {loading: true, rooms: []}
         case ROOM_LIST_SUCCESS:
-            return {loading: false, rooms: action.payload}
+            return {
+                loading: false,
+                rooms: action.payload.results,
+                page: action.payload.page,
+                previous: action.payload.previous,
+                next: action.payload.next,
+                count: action.payload.count,
+                num_pages: action.payload.num_pages,
+            }
         case ROOM_LIST_FAIL:
             return {loading: false, error: action.payload}
         default:
@@ -53,7 +61,15 @@ export const roomPlayersReducer = (state={players:[]}, action) => {
         case ROOM_PLAYERS_REQUEST:
             return {loading: true, players: []}
         case ROOM_PLAYERS_SUCCESS:
-            return {loading: false, players: action.payload}
+            return {
+                loading: false,
+                players: action.payload,
+                page: action.payload.page,
+                previous: action.payload.previous,
+                next: action.payload.next,
+                count: action.payload.count,
+                num_pages: action.payload.num_pages,
+            }
         case ROOM_PLAYERS_FAIL:
             return {loading: false, error: action.payload}
         default:

@@ -19,7 +19,15 @@ export const roomTransactionListReducer = (state={roomTransactions: []}, action)
         case ROOM_TRANSACTION_LIST_REQUEST:
             return {loading: true, roomTransactions: []}
         case ROOM_TRANSACTION_LIST_SUCCESS:
-            return {loading: false, roomTransactions: action.payload}
+            return {
+                loading: false,
+                roomTransactions: action.payload.results,
+                page: action.payload.page,
+                previous: action.payload.previous,
+                next: action.payload.next,
+                count: action.payload.count,
+                num_pages: action.payload.num_pages,
+            }
         case ROOM_TRANSACTION_LIST_FAIL:
             return {loading: false, error: action.payload}
         default:
@@ -33,7 +41,15 @@ export const playerTransactionListReducer = (state={playerTransactions: []}, act
         case PLAYER_TRANSACTION_LIST_REQUEST:
             return {loading: true, playerTransactions: []}
         case PLAYER_TRANSACTION_LIST_SUCCESS:
-            return {loading: false, playerTransactions: action.payload}
+            return {
+                loading: false,
+                playerTransactions: action.payload.results,
+                page: action.payload.page,
+                previous: action.payload.previous,
+                next: action.payload.next,
+                count: action.payload.count,
+                num_pages: action.payload.num_pages,
+            }
         case PLAYER_TRANSACTION_LIST_FAIL:
             return {loading: false, error: action.payload}
         default:
