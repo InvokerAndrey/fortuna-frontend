@@ -58,7 +58,7 @@ export default () => {
                         : 
                             <>
                                 <Row>
-                                    <h3 className='mt-4'>Rooms</h3>
+                                    <h3 className='mt-4'>{rooms.length} Rooms</h3>
                                     <Rooms rooms={rooms}/>
                                 </Row>
                             </>

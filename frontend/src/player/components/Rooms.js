@@ -11,7 +11,7 @@ export default ({ rooms }) => (
     <Table hover responsive className="table-sm" style={{textAlign: 'center', verticalAlign: 'middle'}}>
         <thead>
             <tr>
-                <th>№</th>
+                <th>ID</th>
                 <th>NAME</th>
                 <th>NICKNAME</th>
                 <th>BALANCE</th>
@@ -20,9 +20,9 @@ export default ({ rooms }) => (
             </tr>
         </thead>
         <tbody>
-            {rooms.map((room, index) => (
+            {rooms.map(room => (
                 <tr key={room.id}>
-                    <td>{index + 1}</td>
+                    <td>{room.id}</td>
                     <td>{room.info.name}</td>
                     <td>{room.nickname}</td>
                     <td>${room.balance}</td>

@@ -69,7 +69,7 @@ export default class SessionService {
             }
 
             const {data} = await axios.get(
-                this.SESSION_DETAILS_URL + `${id}`,
+                this.SESSION_DETAILS_URL + `${id}/`,
                 config
             )
 

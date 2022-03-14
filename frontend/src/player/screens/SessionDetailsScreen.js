@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { useParams, useNavigate } from 'react-router-dom'
 
-import { Row, Col, Button } from 'react-bootstrap'
+import { Row, Col, Button, Table } from 'react-bootstrap'
+
+import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai' 
+
+import moment from 'moment'
 
 import SessionService from '../services/SessionService'
 import Loader from '../../components/Loader'
@@ -26,10 +30,7 @@ export default () => {
 
     useEffect(() => {
         dispatch(sessionService.getPlayerSession(id))
-        console.log(session)
     }, [dispatch])
-
-    
 
     return (
         <div>
@@ -45,16 +46,43 @@ export default () => {
                     : error ? <Message variant='danger'>{error}</Message>
                         :
                             <>
-                                <Row>
-                                    <h3>{session.date}</h3>
-                                </Row>
-                                {
-                                    session.room_sessions.map(room_session => (
-                                        <Row>
-                                            {room_session.room.info.name}
-                                        </Row>
-                                    ))
-                                }
+                                <h1>Session {session.id}: {moment(session.date).format('DD.MM.YYYY')}</h1>
+                                <Table hover responsive className="table-sm" style={{textAlign: 'center', verticalAlign: 'middle'}}>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>ROOM</th>
+                                        <th>NICKNAME</th>
+                                        <th>RESULT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        session.room_sessions.map(room_session => (
+                                            <tr key={room_session.id}>
+                                                <td>{room_session.id}</td>
+                                                <td>{room_session.room.info.name}</td>
+                                                <td>{room_session.room.nickname}</td>
+                                                {
+                                                    room_session.result >= 0
+                                                        ? 
+                                                            <td>
+                                                                <span style={{color: 'green'}}>
+                                                                    {room_session.result}$ {' '} <AiOutlineArrowUp />
+                                                                </span>
+                                                            </td>
+                                                        :
+                                                            <td>
+                                                                <span style={{color: 'red'}}>
+                                                                    {room_session.result}$ {' '} <AiOutlineArrowDown />
+                                                                </span>
+                                                            </td>
+                                                }
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                                </Table>
                             </>
             }
         </div>
