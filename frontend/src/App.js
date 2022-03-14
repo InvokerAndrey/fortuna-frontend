@@ -36,6 +36,7 @@ import RoomAddScreen from './admin/screens/room/RoomAddScreen'
 
 import SessionListScreen from './player/screens/SessionListScreen'
 import SessionDetailsScreen from './player/screens/SessionDetailsScreen'
+import SessionCreateScreen from './player/screens/SessionCreateScreen'
 
 
 function App() {
@@ -75,6 +76,7 @@ function App() {
                   <Route path='/player/player-transactions' element={<PlayerTransactionsScreen />} />
                   <Route path='/add/room-transaction' element={<AddRoomTransactionScreen />}/>
                   <Route path='/player/sessions' element={<SessionListScreen />}/>
+                  <Route path='/add/session' element={<SessionCreateScreen />} />
                   <Route path='/player/sessions/:id' element={<SessionDetailsScreen />} />
                 </>
               )

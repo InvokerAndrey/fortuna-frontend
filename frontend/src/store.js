@@ -38,6 +38,8 @@ import {
 import {
     sessionListReducer,
     sessionDetailsReducer,
+    sessionCreateReducer,
+    roomSessionCreateReducer
 } from './player/reducers/sessionReducers'
 
 
@@ -68,6 +70,8 @@ const reducer = combineReducers({
 
     sessionList: sessionListReducer,
     sessionDetails: sessionDetailsReducer,
+    sessionCreate: sessionCreateReducer,
+    roomSessionCreate: roomSessionCreateReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ?

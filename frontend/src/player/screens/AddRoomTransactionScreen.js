@@ -39,8 +39,6 @@ export default () => {
     const playerRoomList = useSelector(state => state.playerRoomList)
     const {loading: loadingRooms, error: errorRooms, rooms} = playerRoomList
 
-    console.log(rooms)
-
     useEffect(() => {
         if (!userInfo) {
             navigate(redirect)
