@@ -24,6 +24,7 @@ export default class PlayerService {
     REGISTER_URL = this.BASE_URL + 'register/'
     DELETE_URL = 'delete/'
     ADD_TRANSACTION_URL = 'add/player-transaction/'
+    ADD_PLAYER_ROOM_URL = ''
 
     listPlayers = (params={}) => async (dispatch, getState) => {
         try {
@@ -52,8 +53,8 @@ export default class PlayerService {
         } catch (error) {
             dispatch({
                 type: PLAYER_LIST_FAIL,
-                payload: error.response && error.response.data.details
-                    ? error.response.data.details
+                payload: error.response && error.response.data.details.non_field_errors
+                    ? error.response.data.details.non_field_errors.join('. ')
                         : error.message,
             })
         }
@@ -76,7 +77,7 @@ export default class PlayerService {
                 }
             }
 
-            const {data} = await axios.get(this.BASE_URL + `${id}`, config)
+            const {data} = await axios.get(this.BASE_URL + `${id}/`, config)
 
             dispatch({
                 type: PLAYER_DETAILS_SUCCESS,
@@ -85,8 +86,8 @@ export default class PlayerService {
         } catch (error) {
             dispatch({
                 type: PLAYER_DETAILS_FAIL,
-                payload: error.response && error.response.data.details
-                    ? error.response.data.details
+                payload: error.response && error.response.data.details.non_field_errors
+                    ? error.response.data.details.non_field_errors.join('. ')
                         : error.message,
             })
         }
@@ -127,8 +128,8 @@ export default class PlayerService {
         } catch (error) {
             dispatch({
                 type: PLAYER_REGISTER_FAIL,
-                payload: error.response && error.response.data.details
-                    ? error.response.data.details
+                payload: error.response && error.response.data.details.non_field_errors
+                    ? error.response.data.details.non_field_errors.join('. ')
                         : error.message,
             })
         }
@@ -162,8 +163,8 @@ export default class PlayerService {
         } catch (error) {
             dispatch({
                 type: PLAYER_DELETE_FAIL,
-                payload: error.response && error.response.data.details
-                    ? error.response.data.details
+                payload: error.response && error.response.data.details.non_field_errors
+                    ? error.response.data.details.non_field_errors.join('. ')
                         : error.message,
             })
         }

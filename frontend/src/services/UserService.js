@@ -44,8 +44,8 @@ export default class UserService {
         } catch (error) {
             dispatch({
                 type: USER_LOGIN_FAIL,
-                payload: error.response && error.response.data.details
-                    ? error.response.data.details
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }

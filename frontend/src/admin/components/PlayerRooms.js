@@ -7,21 +7,18 @@ import { FaTrash } from 'react-icons/fa'
 import { ImProfile } from 'react-icons/im'
 import { FcPlus } from 'react-icons/fc'
 
+import RoomService from '../services/RoomService'
 
-export default ({ player }) => {
 
-    const deleteHandler = (id, name) => {
-        if(window.confirm(`Are you sure you want to delete ${name}?`)){
-            // dispatch(deleteUser(id))
-            console.log(id)
-        }
-    }
+export default ({ player, deleteHandler }) => {
+
+    const roomService = new RoomService()
 
     return (
         <Table hover responsive className="table-sm" style={{textAlign: 'center', verticalAlign: 'middle'}}>
             <thead>
                 <tr>
-                    <th>№</th>
+                    <th>ID</th>
                     <th>NAME</th>
                     <th>NICKNAME</th>
                     <th>BALANCE</th>
@@ -30,9 +27,9 @@ export default ({ player }) => {
                 </tr>
             </thead>
             <tbody>
-                {player.rooms.map((room, index) => (
+                {player.rooms.map(room => (
                     <tr key={room.id}>
-                        <td>{index + 1}</td>
+                        <td>{room.id}</td>
                         <td>{room.info.name}</td>
                         <td>{room.nickname}</td>
                         <td>${room.balance}</td>
@@ -45,7 +42,7 @@ export default ({ player }) => {
                             <Button 
                                 variant='white'
                                 style={{color: 'red'}}
-                                onClick={() => deleteHandler(room.id, room.info.name)}
+                                onClick={() => deleteHandler(room.id, room.info.name, roomService.deletePlayerRoom)}
                                 title='Delete'
                             >
                                 <FaTrash />

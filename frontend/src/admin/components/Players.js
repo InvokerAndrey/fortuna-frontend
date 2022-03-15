@@ -12,22 +12,22 @@ export default ({ players, deleteHandler }) => (
     <Table hover responsive className="table-sm" style={{textAlign: 'center', verticalAlign: 'middle'}}>
         <thead>
             <tr>
-                <th>№</th>
+                <th>ID</th>
                 <th>FULL NAME</th>
                 <th>EMAIL</th>
-                <th>RATE (%)</th>
+                <th>RATE</th>
                 <th>DETAILS</th>
                 <th>EDIT</th>
                 <th>DELETE</th>
             </tr>
         </thead>
         <tbody>
-            {players.map((player, index) => (
+            {players.map(player => (
                 <tr key={player.id}>
-                    <td>{index + 1}</td>
+                    <td>{player.id}</td>
                     <td>{player.user.full_name}</td>
                     <td>{player.user.email}</td>
-                    <td>{player.rate}</td>
+                    <td>{player.rate}%</td>
                     <td>
                         <LinkContainer to={`${player.id}`}>
                             <Button variant='white' title='Details'><ImProfile /></Button>

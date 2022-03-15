@@ -23,7 +23,7 @@ export default () => {
     const navigate = useNavigate()
 
     const [type, setType] = useState()
-    const [amount, setAmount] = useState(0)
+    const [amount, setAmount] = useState()
     const [roomId, setRoomId] = useState()
     const [message, setMessage] = useState('')
 

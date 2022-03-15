@@ -53,6 +53,7 @@ export default () => {
                                         <th>ID</th>
                                         <th>ROOM</th>
                                         <th>NICKNAME</th>
+                                        <th>BALANCE</th>
                                         <th>RESULT</th>
                                     </tr>
                                 </thead>
@@ -63,6 +64,7 @@ export default () => {
                                                 <td>{room_session.id}</td>
                                                 <td>{room_session.room.info.name}</td>
                                                 <td>{room_session.room.nickname}</td>
+                                                <td>{room_session.balance}</td>
                                                 {
                                                     room_session.result >= 0
                                                         ? 

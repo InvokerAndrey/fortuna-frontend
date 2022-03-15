@@ -1,3 +1,4 @@
+import { GrActions } from 'react-icons/gr'
 import {
     PLAYER_LIST_REQUEST,
     PLAYER_LIST_SUCCESS,
@@ -26,6 +27,14 @@ import {
     PLAYER_ADD_TRANSACTION_SUCCESS,
     PLAYER_ADD_TRANSACTION_FAIL,
     PLAYER_ADD_TRANSACTION_RESET,
+
+    PLAYER_LIST_PLAYER_TRANSACTIONS_REQUEST,
+    PLAYER_LIST_PLAYER_TRANSACTIONS_SUCCESS,
+    PLAYER_LIST_PLAYER_TRANSACTIONS_FAIL,
+
+    PLAYER_LIST_ROOM_TRANSACTIONS_REQUEST,
+    PLAYER_LIST_ROOM_TRANSACTIONS_SUCCESS,
+    PLAYER_LIST_ROOM_TRANSACTIONS_FAIL,
 } from '../constants/playerConstants'
 
 
@@ -123,6 +132,50 @@ export const playerAddTransactionReducer = (state={}, action) => {
             return {loading: false, error: action.payload}
         case PLAYER_ADD_TRANSACTION_RESET:
             return {}
+        default:
+            return state
+    }
+}
+
+
+export const playerListPlayerTransactionsReducer = (state={transactions: []}, action) => {
+    switch(action.type) {
+        case PLAYER_LIST_PLAYER_TRANSACTIONS_REQUEST:
+            return {loading: true, transactions: []}
+        case PLAYER_LIST_PLAYER_TRANSACTIONS_SUCCESS:
+            return {
+                loading: false,
+                transactions: action.payload.results,
+                page: action.payload.page,
+                previous: action.payload.previous,
+                next: action.payload.next,
+                count: action.payload.count,
+                num_pages: action.payload.num_pages,
+            }
+        case PLAYER_LIST_PLAYER_TRANSACTIONS_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+
+export const playerListRoomTransactionsReducer = (state={transactions: []}, action) => {
+    switch(action.type) {
+        case PLAYER_LIST_ROOM_TRANSACTIONS_REQUEST:
+            return {loading: true, transactions: []}
+        case PLAYER_LIST_ROOM_TRANSACTIONS_SUCCESS:
+            return {
+                loading: false,
+                transactions: action.payload.results,
+                page: action.payload.page,
+                previous: action.payload.previous,
+                next: action.payload.next,
+                count: action.payload.count,
+                num_pages: action.payload.num_pages,
+            }
+        case PLAYER_LIST_ROOM_TRANSACTIONS_FAIL:
+            return {loading: false, error: action.payload}
         default:
             return state
     }

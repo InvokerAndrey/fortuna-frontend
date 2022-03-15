@@ -36,8 +36,8 @@ export default class PlayerService {
         } catch (error) {
             dispatch({
                 type: PROFILE_DETAILS_FAIL,
-                payload: error.response && error.response.data.details
-                    ? error.response.data.details
+                payload: error.response && error.response.data.details.non_field_errors
+                    ? error.response.data.details.non_field_errors.join('. ')
                         : error.message,
             })
         }

@@ -5,17 +5,12 @@ import { useDispatch } from 'react-redux'
 import ReactPaginate from 'react-paginate'
 
 
-export default ({page, num_pages, callback}) => {
+export default ({num_pages, callback, args=[]}) => {
 
     const dispatch = useDispatch()
 
-    let params = {
-        page: page
-    }
-
     const paginateHandler = data => {
-        params.page = data.selected + 1
-        dispatch(callback(params))
+        dispatch(callback(...args, {page: data.selected + 1}))
     }
 
     return (

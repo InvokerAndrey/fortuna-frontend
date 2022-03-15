@@ -6,6 +6,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { Row, Col, Button, Tabs, Tab } from 'react-bootstrap'
 
 import { PLAYER_DELETE_RESET } from '../../constants/playerConstants'
+import { PLAYER_ROOM_DELETE_RESET } from '../../constants/roomConstants'
 
 import PlayerService from '../../services/PlayerService'
 import Loader from '../../../components/Loader'
@@ -31,17 +32,23 @@ export default () => {
     const playerDelete = useSelector(state => state.playerDelete)
     const {success: successDelete} = playerDelete
 
+    const playerRoomDelete = useSelector(state => state.playerRoomDelete)
+    const {success: successPlayerRoomDelete} = playerRoomDelete
+
     useEffect(() => {
         dispatch(playerService.getPlayerDetails(id))
         if (successDelete) {
             dispatch({type: PLAYER_DELETE_RESET})
             navigate('/admin/players')
         }
-    }, [dispatch, successDelete])
+        if (successPlayerRoomDelete) {
+            dispatch({type: PLAYER_ROOM_DELETE_RESET})
+        }
+    }, [dispatch, successDelete, successPlayerRoomDelete])
 
-    const deleteHandler = (id, full_name) => {
-        if(window.confirm(`Are you sure you want to delete ${full_name}?`)){
-            dispatch(playerService.delete(id))
+    const deleteHandler = (id, name, callback) => {
+        if(window.confirm(`Are you sure you want to delete ${name}?`)){
+            dispatch(callback(id))
         }
     }
 
@@ -61,7 +68,7 @@ export default () => {
                 <Col>
                     <Button
                         className='btn btn-dark my-3'
-                        onClick={() => deleteHandler(player.id, player.user.full_name)}
+                        onClick={() => deleteHandler(player.id, player.user.full_name, playerService.delete)}
                         style={{color: 'red'}}
                     >
                         Delete
@@ -87,12 +94,16 @@ export default () => {
                                             <Col md={2}>RATE:</Col>
                                             <Col>{player.rate}%</Col>
                                         </Row>
+                                        <Row>
+                                            <Col md={2}>BALANCE:</Col>
+                                            <Col>${player.balance}</Col>
+                                        </Row>
                                     </Col>
                                 </Row>
 
                                 <Tabs defaultActiveKey='rooms' id='player-details' className='mb-3'>
                                     <Tab eventKey='rooms' title='Rooms'>
-                                        <PlayerRooms player={player}/>
+                                        <PlayerRooms player={player} deleteHandler={deleteHandler}/>
                                     </Tab>
                                     <Tab eventKey='room_transactions' title='Room Transactions'>
                                         <RoomTransactions player={player} />

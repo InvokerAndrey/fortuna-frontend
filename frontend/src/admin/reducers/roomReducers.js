@@ -18,6 +18,20 @@ import {
     ROOM_DELETE_REQUEST,
     ROOM_DELETE_SUCCESS,
     ROOM_DELETE_FAIL,
+
+    PLAYER_ROOM_ADD_REQUEST,
+    PLAYER_ROOM_ADD_SUCCESS,
+    PLAYER_ROOM_ADD_FAIL,
+    PLAYER_ROOM_ADD_RESET,
+
+    AVAILABLE_ROOM_LIST_REQUEST,
+    AVAILABLE_ROOM_LIST_SUCCESS,
+    AVAILABLE_ROOM_LIST_FAIL,
+
+    PLAYER_ROOM_DELETE_REQUEST,
+    PLAYER_ROOM_DELETE_SUCCESS,
+    PLAYER_ROOM_DELETE_FAIL,
+    PLAYER_ROOM_DELETE_RESET,
 } from '../constants/roomConstants'
 
 
@@ -100,6 +114,52 @@ export const roomDeleteReducer = (state={}, action) => {
             return {loading: false, success: true}
         case ROOM_DELETE_FAIL:
             return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+
+export const playerRoomAddReducer = (state={}, action) => {
+    switch(action.type) {
+        case PLAYER_ROOM_ADD_REQUEST:
+            return {loading: true}
+        case PLAYER_ROOM_ADD_SUCCESS:
+            return {loading: false, success: true}
+        case PLAYER_ROOM_ADD_FAIL:
+            return {loading: false, error: action.payload}
+        case PLAYER_ROOM_ADD_RESET:
+            return {}
+        default:
+            return state
+    }
+}
+
+
+export const availableRoomListReducer = (state={availableRooms:[]}, action) => {
+    switch(action.type) {
+        case AVAILABLE_ROOM_LIST_REQUEST:
+            return {loading: true, availableRooms: []}
+        case AVAILABLE_ROOM_LIST_SUCCESS:
+            return {loading: false, availableRooms: action.payload}
+        case AVAILABLE_ROOM_LIST_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+
+export const playerRoomDeleteReducer = (state={}, action) => {
+    switch(action.type) {
+        case PLAYER_ROOM_DELETE_REQUEST:
+            return {loading: true}
+        case PLAYER_ROOM_DELETE_SUCCESS:
+            return {loading: false, success: true}
+        case PLAYER_ROOM_DELETE_FAIL:
+            return {loading: false, error: action.payload}
+        case PLAYER_ROOM_DELETE_RESET:
+            return {}
         default:
             return state
     }

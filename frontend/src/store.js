@@ -8,6 +8,9 @@ import {
     playerRegisterReducer,
     playerDeleteReducer,
     playerAddTransactionReducer,
+    playerListPlayerTransactionsReducer,
+    playerListRoomTransactionsReducer,
+    playerAddPlayerRoomReducer,
 } from './admin/reducers/playerReducers'
 import {
     roomListReducer,
@@ -15,6 +18,9 @@ import {
     roomPlayersReducer,
     roomAddReducer,
     roomDeleteReducer,
+    playerRoomAddReducer,
+    availableRoomListReducer,
+    playerRoomDeleteReducer,
 } from './admin/reducers/roomReducers'
 import { 
     userLoginReducer,
@@ -49,12 +55,17 @@ const reducer = combineReducers({
     playerRegister: playerRegisterReducer,
     playerDelete: playerDeleteReducer,
     playerAddTransaction: playerAddTransactionReducer,
+    playerListPlayerTransactions: playerListPlayerTransactionsReducer,
+    playerListRoomTransactions: playerListRoomTransactionsReducer,
 
     roomList: roomListReducer,
     roomDetails: roomDetailsReducer,
     roomPlayers: roomPlayersReducer,
     roomDelete: roomDeleteReducer,
     roomAdd: roomAddReducer,
+    playerRoomAdd: playerRoomAddReducer,
+    availableRoomList: availableRoomListReducer,
+    playerRoomDelete: playerRoomDeleteReducer,
 
     userLogin: userLoginReducer,
     adminList: adminListReducer,

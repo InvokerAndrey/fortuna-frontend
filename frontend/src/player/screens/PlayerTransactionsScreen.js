@@ -29,7 +29,7 @@ export default () => {
                     : error ? <Message variant='danger'>{error}</Message>
                         : <PlayerTransactions transactions={playerTransactions} />
             }
-            <Pagination page={page} num_pages={num_pages} callback={transactionService.listPlayerPlayerTransactions} />
+            <Pagination num_pages={num_pages} callback={transactionService.listPlayerPlayerTransactions} />
         </div>
     )
 }

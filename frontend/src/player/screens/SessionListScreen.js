@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -22,6 +22,7 @@ export default () => {
         dispatch(sessionService.listPlayerSessions())
     }, [dispatch])
 
+
     return (
         <div>
             {
@@ -29,7 +30,7 @@ export default () => {
                     : error ? <Message variant='danger'>{error}</Message>
                         : <Sessions sessions={sessions} />
             }
-            <Pagination page={page} num_pages={num_pages} callback={sessionService.listPlayerSessions} />
+            <Pagination num_pages={num_pages} callback={sessionService.listPlayerSessions} />
         </div>
     )
 }

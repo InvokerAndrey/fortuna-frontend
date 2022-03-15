@@ -23,7 +23,7 @@ export default () => {
 
     const [roomSessions, setRoomSessions] = useState([{
         room_id: null,
-        result: null
+        balance: null
     }])
 
     const redirect = Location.search ? Location.search.split('=')[1] : '/'
@@ -55,7 +55,7 @@ export default () => {
         const values = [...roomSessions];
         values.push({
             room_id: null,
-            result: null
+            balance: null
         });
         setRoomSessions(values);
     }
@@ -118,15 +118,15 @@ export default () => {
                                                                 </Form.Control>
                                                         </Form.Group>
 
-                                                        <Form.Label className='mt-4'>Result</Form.Label>
-                                                        <Form.Group controlId='result' className='input-group'>   
+                                                        <Form.Label className='mt-4'>balance</Form.Label>
+                                                        <Form.Group controlId='Balance' className='input-group'>   
                                                             <InputGroup.Text>$</InputGroup.Text>
                                                             <Form.Control
                                                                 required
                                                                 type='number'
-                                                                name='result'
+                                                                name='balance'
                                                                 placeholder='$'
-                                                                value={field.result}
+                                                                value={field.balance}
                                                                 onChange={(event) => inputChangeHandler(index, event)}
                                                             >
                                                             </Form.Control>

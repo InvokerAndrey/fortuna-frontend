@@ -48,6 +48,10 @@ export default () => {
                                             <Col md={2}>RATE:</Col>
                                             <Col>{profile.rate}%</Col>
                                         </Row>
+                                        <Row>
+                                            <Col md={2}>BALANCE:</Col>
+                                            <Col>${profile.balance}</Col>
+                                        </Row>
                                     </Col>
                                 </Row>
                             </>
