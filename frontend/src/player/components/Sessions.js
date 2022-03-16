@@ -21,6 +21,14 @@ export default ({sessions}) => (
             </tr>
         </thead>
         <tbody>
+            <LinkContainer to={`/add/session/`}>
+                <tr title='Add new Session'>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><FcPlus /></td>
+                </tr>
+            </LinkContainer>
             {sessions.map(session => (
                 <tr key={session.id}>
                     <td>{session.id}</td>
@@ -47,14 +55,6 @@ export default ({sessions}) => (
                     </td>
                 </tr>
             ))}
-            <LinkContainer to={`/add/session/`}>
-                <tr title='Add new Session'>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><FcPlus /></td>
-                </tr>
-            </LinkContainer>
         </tbody>
     </Table>
 )

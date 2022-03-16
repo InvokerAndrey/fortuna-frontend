@@ -6,7 +6,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 import { Row, Col, Button, Table } from 'react-bootstrap'
 
-import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai' 
+import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai'
 
 import moment from 'moment'
 
@@ -64,10 +64,10 @@ export default () => {
                                                 <td>{room_session.id}</td>
                                                 <td>{room_session.room.info.name}</td>
                                                 <td>{room_session.room.nickname}</td>
-                                                <td>{room_session.balance}</td>
+                                                <td title='Room balance at the end of the session '>{room_session.balance}$</td>
                                                 {
                                                     room_session.result >= 0
-                                                        ? 
+                                                        ?
                                                             <td>
                                                                 <span style={{color: 'green'}}>
                                                                     {room_session.result}$ {' '} <AiOutlineArrowUp />

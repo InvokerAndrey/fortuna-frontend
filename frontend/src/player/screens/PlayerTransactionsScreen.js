@@ -27,7 +27,12 @@ export default () => {
             {
                 loading ? <Loader />
                     : error ? <Message variant='danger'>{error}</Message>
-                        : <PlayerTransactions transactions={playerTransactions} />
+                        : (
+                            <>
+                                <h1>Player transactions</h1>
+                                <PlayerTransactions transactions={playerTransactions} />
+                            </>
+                        )
             }
             <Pagination num_pages={num_pages} callback={transactionService.listPlayerPlayerTransactions} />
         </div>
