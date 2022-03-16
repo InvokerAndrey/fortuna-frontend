@@ -46,8 +46,8 @@ export default class AdminService {
         } catch (error) {
             dispatch({
                 type: ADMIN_LIST_FAIL,
-                payload: error.response && error.response.data.details
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
@@ -79,8 +79,8 @@ export default class AdminService {
         } catch (error) {
             dispatch({
                 type: ADMIN_DETAILS_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
@@ -121,8 +121,8 @@ export default class AdminService {
         } catch (error) {
             dispatch({
                 type: ADMIN_REGISTER_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }

@@ -50,8 +50,8 @@ export default class SessionService {
         } catch (error) {
             dispatch({
                 type: SESSION_LIST_FAIL,
-                payload: error.response && error.response.data.details
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
@@ -86,8 +86,8 @@ export default class SessionService {
         } catch (error) {
             dispatch({
                 type: SESSION_DETAILS_FAIL,
-                payload: error.response && error.response.data.details
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
@@ -123,8 +123,8 @@ export default class SessionService {
         } catch (error) {
             dispatch({
                 type: SESSION_CREATE_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }

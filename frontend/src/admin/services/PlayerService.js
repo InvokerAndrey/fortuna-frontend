@@ -53,8 +53,8 @@ export default class PlayerService {
         } catch (error) {
             dispatch({
                 type: PLAYER_LIST_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
@@ -86,8 +86,8 @@ export default class PlayerService {
         } catch (error) {
             dispatch({
                 type: PLAYER_DETAILS_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
@@ -128,8 +128,8 @@ export default class PlayerService {
         } catch (error) {
             dispatch({
                 type: PLAYER_REGISTER_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
@@ -163,8 +163,8 @@ export default class PlayerService {
         } catch (error) {
             dispatch({
                 type: PLAYER_DELETE_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }

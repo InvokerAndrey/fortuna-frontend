@@ -53,8 +53,8 @@ export default class TransactionService {
         } catch (error) {
             dispatch({
                 type: PLAYER_ADD_TRANSACTION_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
@@ -90,8 +90,8 @@ export default class TransactionService {
         } catch (error) {
             dispatch({
                 type: PLAYER_LIST_PLAYER_TRANSACTIONS_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
@@ -127,8 +127,8 @@ export default class TransactionService {
         } catch (error) {
             dispatch({
                 type: PLAYER_LIST_ROOM_TRANSACTIONS_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }

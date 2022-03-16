@@ -70,8 +70,8 @@ export default class RoomService {
         } catch (error) {
             dispatch({
                 type: ROOM_LIST_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
@@ -103,8 +103,8 @@ export default class RoomService {
         } catch (error) {
             dispatch({
                 type: ROOM_DETAILS_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
@@ -137,8 +137,8 @@ export default class RoomService {
         } catch (error) {
             dispatch({
                 type: ROOM_PLAYERS_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
@@ -176,8 +176,8 @@ export default class RoomService {
         } catch (error) {
             dispatch({
                 type: ROOM_ADD_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
@@ -209,8 +209,8 @@ export default class RoomService {
         } catch (error) {
             dispatch({
                 type: ROOM_DELETE_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
@@ -245,8 +245,8 @@ export default class RoomService {
         } catch (error) {
             dispatch({
                 type: AVAILABLE_ROOM_LIST_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
@@ -285,8 +285,8 @@ export default class RoomService {
         } catch (error) {
             dispatch({
                 type: PLAYER_ROOM_ADD_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
@@ -321,8 +321,8 @@ export default class RoomService {
         } catch (error) {
             dispatch({
                 type: PLAYER_ROOM_DELETE_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }

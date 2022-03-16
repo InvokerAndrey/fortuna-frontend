@@ -39,8 +39,8 @@ export default class RoomService {
         } catch (error) {
             dispatch({
                 type: PLAYER_ROOM_LIST_FAIL,
-                payload: error.response && error.response.data.details.non_field_errors
-                    ? error.response.data.details.non_field_errors.join('. ')
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
                         : error.message,
             })
         }
