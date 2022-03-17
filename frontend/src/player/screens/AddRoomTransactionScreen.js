@@ -55,7 +55,6 @@ export default () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        console.log('id:', roomId, 'type:', type)
         if (amount <= 0) {
             setMessage('Invalid amount')
         } else {
@@ -64,7 +63,6 @@ export default () => {
     }
 
     return (
-        
         <FormContainer>
             <h1>Add Room Transaction</h1>
             {errorTransaction && <Message variant='danger'>{errorTransaction}</Message>}

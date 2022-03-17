@@ -7,37 +7,39 @@ import { AiOutlineFundView } from 'react-icons/ai'
 import { FaUserEdit } from 'react-icons/fa'
 
 
-export default ({ rooms }) => (
-    <Table hover responsive className="table-sm" style={{textAlign: 'center', verticalAlign: 'middle'}}>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>NICKNAME</th>
-                <th>BALANCE</th>
-                <th>EDIT</th>
-                <th>STATISTICS</th>
-            </tr>
-        </thead>
-        <tbody>
-            {rooms.map(room => (
-                <tr key={room.id}>
-                    <td>{room.id}</td>
-                    <td>{room.info.name}</td>
-                    <td>{room.nickname}</td>
-                    <td>${room.balance}</td>
-                    <td>
-                        <LinkContainer to={`${room.id}`}>
-                            <Button variant='white' title='Edit'><FaUserEdit /></Button>
-                        </LinkContainer>
-                    </td>
-                    <td>
-                        <LinkContainer to={`${room.id}`}>
-                            <Button variant='white' title='Statistics'><AiOutlineFundView /></Button>
-                        </LinkContainer>
-                    </td>
+export default ({ rooms }) => {
+    return (
+        <Table hover responsive className="table-sm" style={{textAlign: 'center', verticalAlign: 'middle'}}>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>NICKNAME</th>
+                    <th>BALANCE</th>
+                    <th>EDIT</th>
+                    <th>STATISTICS</th>
                 </tr>
-            ))}
-        </tbody>
-    </Table>
-)
+            </thead>
+            <tbody>
+                {rooms.map(room => (
+                    <tr key={room.id}>
+                        <td>{room.id}</td>
+                        <td>{room.info.name}</td>
+                        <td>{room.nickname}</td>
+                        <td>${room.balance}</td>
+                        <td>
+                            <LinkContainer to={`${room.id}/edit`}>
+                                <Button variant='white' title='Edit'><FaUserEdit /></Button>
+                            </LinkContainer>
+                        </td>
+                        <td>
+                            <LinkContainer to={`${room.id}`}>
+                                <Button variant='white' title='Statistics'><AiOutlineFundView /></Button>
+                            </LinkContainer>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </Table>
+    )
+}

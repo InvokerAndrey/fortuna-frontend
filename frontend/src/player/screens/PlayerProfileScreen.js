@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Row, Col, Button, Tabs, Tab } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 
 import ProfileService from '../services/ProfileService'
 import RoomService from '../services/RoomService'
