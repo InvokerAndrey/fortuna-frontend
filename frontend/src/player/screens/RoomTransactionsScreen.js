@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import moment from 'moment'
-
 import { Row, Col } from 'react-bootstrap'
 
 import TransactionService from '../services/TransactionService'

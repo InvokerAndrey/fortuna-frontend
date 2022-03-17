@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { ListGroup, Row, Col, Form, Button } from 'react-bootstrap'
 import DatePicker from 'react-datepicker'
 
-import { RoomTransactionTypeEnum } from '../../constants/enums'
+import { PlayerTransactionTypeEnum } from '../../constants/enums'
 
 
 export default ({filterHandler, filterParams}) => {
@@ -12,9 +12,6 @@ export default ({filterHandler, filterParams}) => {
     const [endDate, setEndDate] = useState(filterParams.end_date)
     const [order, setOrder] = useState(filterParams.order)
     const [type, setType] = useState(filterParams.type)
-
-    console.log('start date filter', startDate)
-    console.log('end date filter', endDate)
 
     return (
         <div>
@@ -77,9 +74,9 @@ export default ({filterHandler, filterParams}) => {
                             >
                                 <option key={0} value={0}>All</option>
                                 {
-                                    [...RoomTransactionTypeEnum.getIdList()].map(x => (
+                                    [...PlayerTransactionTypeEnum.getIdList()].map(x => (
                                         <option key={x} value={x}>
-                                            {RoomTransactionTypeEnum.getVerboseById(x)}
+                                            {PlayerTransactionTypeEnum.getVerboseById(x)}
                                         </option>
                                     ))
                                 }
