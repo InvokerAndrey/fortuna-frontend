@@ -10,20 +10,16 @@ import { FcPlus } from 'react-icons/fc'
 import { RoomTransactionTypeEnum } from '../../constants/enums'
 
 
-export default ({transactions, sortHandler}) => {
-    const thStyle = {
-        cursor: 'pointer'
-    }
-
+export default ({transactions}) => {
     return (
         <Table hover responsive className="table-sm" style={{textAlign: 'center', verticalAlign: 'middle'}}>
             <thead>
                 <tr>
-                    <th style={thStyle} onClick={() => sortHandler('id')}>ID</th>
-                    <th style={thStyle} onClick={() => sortHandler('type')}>TYPE</th>
-                    <th style={thStyle} onClick={() => sortHandler('amount')}>AMOUNT</th>
-                    <th style={thStyle} onClick={() => sortHandler('room')}>ROOM</th>
-                    <th style={thStyle} onClick={() => sortHandler('created_at')}>DATE</th>
+                    <th>ID</th>
+                    <th>TYPE</th>
+                    <th>AMOUNT</th>
+                    <th>ROOM</th>
+                    <th>DATE</th>
                 </tr>
             </thead>
             <tbody>

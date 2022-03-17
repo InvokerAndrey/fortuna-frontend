@@ -1,33 +1,39 @@
-import React, { useState, useEffect } from 'react'
-
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
 
 import { ListGroup, Row, Col, Form, Button } from 'react-bootstrap'
 
+import moment from 'moment'
+
 import DatePicker from 'react-datepicker'
 
-import Loader from '../../components/Loader'
-import Message from '../../components/Message'
+import { RoomTransactionTypeEnum } from '../../constants/enums'
 
 
-export default () => {
+export default ({filterHandler, filterParams}) => {
 
-    const dispatch = useDispatch()
+    const [startDate, setStartDate] = useState(filterParams.start_date)
+    const [endDate, setEndDate] = useState(filterParams.end_date)
+    const [order, setOrder] = useState(filterParams.order)
+    const [type, setType] = useState(filterParams.type)
 
-    const [startDate, setStartDate] = useState(null)
-    const [endDate, setEndDate] = useState(null)
-    const [order, setOrder] = useState('New')
+    console.log('start date filter', startDate)
+    console.log('end date filter', endDate)
 
     return (
         <div>
-            <ListGroup>
+            <ListGroup variant='flush'>
                 <ListGroup.Item>
                     <Row>
                         <Col>Start date:</Col>
                     </Row>
                     <Row>
                         <Col>
-                            <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
+                            <DatePicker 
+                                dateFormat="dd.MM.yyyy"
+                                className='form-control'
+                                selected={startDate}
+                                onChange={date => setStartDate(date)}
+                            />
                         </Col>
                     </Row>
                     <Row>
@@ -35,7 +41,12 @@ export default () => {
                     </Row>
                     <Row>
                         <Col>
-                            <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
+                            <DatePicker
+                                dateFormat="dd.MM.yyyy"
+                                className='form-control'
+                                selected={endDate}
+                                onChange={date => setEndDate(date)}
+                            />
                         </Col>
                     </Row>
                 </ListGroup.Item>
@@ -50,8 +61,31 @@ export default () => {
                                 value={order}
                                 onChange={e => setOrder(e.target.value)}
                             >
-                                <option key='New' value='New'>New</option>
-                                <option key='Old' value='Old'>Old</option>
+                                <option key='-created_at' value='-created_at'>New first</option>
+                                <option key='created_at' value='created_at'>Old first</option>
+                            </Form.Control>
+                        </Col>
+                    </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                    <Row>
+                        <Col>Type:</Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Control
+                                as='select'
+                                value={type}
+                                onChange={e => setType(e.target.value)}
+                            >
+                                <option key={0} value={0}>All</option>
+                                {
+                                    [...RoomTransactionTypeEnum.getIdList()].map(x => (
+                                        <option key={x} value={x}>
+                                            {RoomTransactionTypeEnum.getVerboseById(x)}
+                                        </option>
+                                    ))
+                                }
                             </Form.Control>
                         </Col>
                     </Row>
@@ -59,7 +93,7 @@ export default () => {
                 <ListGroup.Item>
                     <Row>
                         <Button
-                            onClick={() => {}}
+                            onClick={() => filterHandler(startDate, endDate, order, type)}
                             className="btn-block"
                             variant='dark'
                             type="button"

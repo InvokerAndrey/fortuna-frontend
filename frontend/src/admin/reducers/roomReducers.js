@@ -14,6 +14,7 @@ import {
     ROOM_ADD_REQUEST,
     ROOM_ADD_SUCCESS,
     ROOM_ADD_FAIL,
+    ROOM_ADD_RESET,
 
     ROOM_DELETE_REQUEST,
     ROOM_DELETE_SUCCESS,
@@ -100,6 +101,8 @@ export const roomAddReducer = (state={}, action) => {
             return {loading: false, success: true}
         case ROOM_ADD_FAIL:
             return {loading: false, error: action.payload}
+        case ROOM_ADD_RESET:
+            return {}
         default:
             return state
     }

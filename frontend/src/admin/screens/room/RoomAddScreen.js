@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 
 import { Form, Button } from 'react-bootstrap'
 
+import { ROOM_ADD_RESET } from '../../constants/roomConstants'
+
 import RoomService from '../../services/RoomService'
 import Loader from '../../../components/Loader'
 import Message from '../../../components/Message'
@@ -38,6 +40,7 @@ export default () => {
 
     useEffect(() => {
         if (success) {
+            dispatch({type: ROOM_ADD_RESET})
             navigate('/admin/rooms')
         }
     }, [success, navigate])
