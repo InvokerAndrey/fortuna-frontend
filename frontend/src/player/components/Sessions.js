@@ -32,7 +32,7 @@ export default ({sessions}) => (
             {sessions.map(session => (
                 <tr key={session.id}>
                     <td>{session.id}</td>
-                    <td>{moment(session.date).format('DD.MM.YYYY')}</td>
+                    <td>{moment(session.created_at).format('DD.MM.YYYY')}</td>
                     {
                         session.result >= 0
                             ?

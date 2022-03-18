@@ -3,15 +3,13 @@ import React, { useState } from 'react'
 import { ListGroup, Row, Col, Form, Button } from 'react-bootstrap'
 import DatePicker from 'react-datepicker'
 
-import { RoomTransactionTypeEnum } from '../../constants/enums'
-
 
 export default ({filterHandler, filterParams}) => {
 
     const [startDate, setStartDate] = useState(filterParams.start_date)
     const [endDate, setEndDate] = useState(filterParams.end_date)
     const [order, setOrder] = useState(filterParams.order)
-    const [type, setType] = useState(filterParams.type)
+    const [result, setResult] = useState(filterParams.result)
 
     return (
         <div>
@@ -63,23 +61,18 @@ export default ({filterHandler, filterParams}) => {
                 </ListGroup.Item>
                 <ListGroup.Item>
                     <Row>
-                        <Col>Type:</Col>
+                        <Col>Result:</Col>
                     </Row>
                     <Row>
                         <Col>
                             <Form.Control
                                 as='select'
-                                value={type}
-                                onChange={e => setType(e.target.value)}
+                                value={result}
+                                onChange={e => setResult(e.target.value)}
                             >
                                 <option key={0} value={0}>All</option>
-                                {
-                                    [...RoomTransactionTypeEnum.getIdList()].map(x => (
-                                        <option key={x} value={x}>
-                                            {RoomTransactionTypeEnum.getVerboseById(x)}
-                                        </option>
-                                    ))
-                                }
+                                <option key={1} value={1}>Positive</option>
+                                <option key={2} value={2}>Negative</option>
                             </Form.Control>
                         </Col>
                     </Row>
@@ -87,7 +80,7 @@ export default ({filterHandler, filterParams}) => {
                 <ListGroup.Item>
                     <Row>
                         <Button
-                            onClick={() => filterHandler(startDate, endDate, order, type)}
+                            onClick={() => filterHandler(startDate, endDate, order, result)}
                             className="btn-block"
                             variant='dark'
                             type="button"
