@@ -28,7 +28,7 @@ export default () => {
     const playerRoomDetails = useSelector(state => state.playerRoomDetails)
     const {loading: loadingDetail, error: errorDetail, playerRoom} = playerRoomDetails
 
-    const [newNick, setNewNick] = useState()
+    const [newNick, setNewNick] = useState(roomService.nickname)
 
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
@@ -42,27 +42,48 @@ export default () => {
         }
     }, [navigate, userInfo, redirect])
 
-
     useEffect(() => {
         dispatch(roomService.getPlayerRoomDetails(id))
+    }, [dispatch])
+
+    useEffect(() => {
         if (success) {
             dispatch({type: PLAYER_ROOM_UPDATE_RESET})
             navigate('/player/profile')
         }
-    }, [dispatch])
+    }, [dispatch, submitHandler, success])
 
     const submitHandler = (e) => {
         e.preventDefault()
+        playerRoom.nickname = newNick
         dispatch(roomService.updatePlayerRoom(playerRoom))
     }
 
     return (
         <>
-            {loadingDetail && <Loader />}
-            {errorDetail && <Message variant='danger'>{errorDetail}</Message>}
-            <FormContainer>
-                <h1>Edit</h1>
-            </FormContainer>
+            {error && <Message variant='danger'>{error}</Message>}
+            {
+                loadingDetail ? <Loader />
+                    : errorDetail ? <Message variant='danger'>{errorDetail}</Message>
+                        : (
+                            <FormContainer>
+                                <h1>Edit {playerRoom.info.name}</h1>
+                                <Form onSubmit={submitHandler}>
+                                    <Form.Group>
+                                        <Form.Label>Nickname</Form.Label>
+                                        <Form.Control
+                                            type='text'
+                                            value={newNick}
+                                            onChange={(e) => setNewNick(e.target.value)}
+                                        >
+                                        </Form.Control>
+                                    </Form.Group>
+                                    <Button className='btn btn-block mt-3' type='submit' variant='dark'>Edit</Button>
+                                </Form>
+                            </FormContainer>
+                        )
+            }
+            
         </>
     )
 }

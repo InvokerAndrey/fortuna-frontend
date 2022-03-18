@@ -17,7 +17,7 @@ import {
 export default class RoomService {
     BASE_URL = 'api/rooms/player/room/'
     PLAYER_ROOM_LIST_URL = this.BASE_URL + 'list/'
-    PLAYER_ROOM_UPDATE_URL = this.BASE_URL + 'update/'
+    PLAYER_ROOM_UPDATE_URL = 'api/rooms/player-room/'
 
     listPlayerRooms = () => async (dispatch, getState) => {
         try {
@@ -109,7 +109,7 @@ export default class RoomService {
             }
 
             const {data} = await axios.put(
-                this.PLAYER_ROOM_UPDATE_URL + `${playerRoom.id}/`,
+                this.PLAYER_ROOM_UPDATE_URL + `${playerRoom.id}/` + 'update/',
                 playerRoom,
                 config
             )

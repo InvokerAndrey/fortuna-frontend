@@ -28,7 +28,7 @@ export const playerRoomListReducer = (state={rooms:[]}, action) => {
 }
 
 
-export const playerRoomDetailsReducer = (state={playerRoom:{}}, action) => {
+export const playerRoomDetailsReducer = (state={playerRoom:{info:{}}}, action) => {
     switch(action.type) {
         case PLAYER_ROOM_DETAILS_REQUEST:
             return {loading: true, playerRoom:{}}
