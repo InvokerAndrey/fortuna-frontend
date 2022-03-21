@@ -6,6 +6,7 @@ import { Row, Col } from 'react-bootstrap'
 
 import SessionService from '../services/SessionService'
 import Sessions from '../components/Sessions'
+import SessionChart from '../components/SessionChart'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import Pagination from '../../components/Pagination'
@@ -21,6 +22,9 @@ export default () => {
     const sessionList = useSelector(state => state.sessionList)
     const {loading, error, sessions, num_pages} = sessionList
 
+    const sessionsStatistics = useSelector(state => state.sessionsStatistics)
+    const {loading: loadingStats, error: errorStats, statistics} = sessionsStatistics
+
     const [filterParams, setFilterParams] = useState({
         start_date: null,
         end_date: null,
@@ -30,6 +34,8 @@ export default () => {
 
     useEffect(() => {
         dispatch(sessionService.listPlayerSessions())
+        dispatch(sessionService.getSessionStatistics())
+        console.log('stats:', statistics)
     }, [dispatch])
 
     const filterHandler = (startDate, endDate, order, result) => {
@@ -61,6 +67,14 @@ export default () => {
                             
             }
             <Pagination num_pages={num_pages} callback={sessionService.listPlayerSessions} params={filterParams} />
+            {
+                loadingStats ? <Loader />
+                    : errorStats ? <Message variant='danger'>{errorStats}</Message>
+                        :
+                            <Row className='my-4'>
+                                <SessionChart statistics={statistics} />
+                            </Row>
+            }
         </div>
     )
 }

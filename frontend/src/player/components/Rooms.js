@@ -33,7 +33,7 @@ export default ({ rooms }) => {
                             </LinkContainer>
                         </td>
                         <td>
-                            <LinkContainer to={`${room.id}`}>
+                            <LinkContainer to={`/player/profile/room/${room.id}`}>
                                 <Button variant='white' title='Statistics'><AiOutlineFundView /></Button>
                             </LinkContainer>
                         </td>

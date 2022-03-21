@@ -11,6 +11,14 @@ import {
     SESSION_CREATE_SUCCESS,
     SESSION_CREATE_FAIL,
     SESSION_CREATE_RESET,
+
+    ROOM_SESSIONS_STATISTICS_REQUEST,
+    ROOM_SESSIONS_STATISTICS_SUCCESS,
+    ROOM_SESSIONS_STATISTICS_FAIL,
+
+    SESSIONS_STATISTICS_REQUEST,
+    SESSIONS_STATISTICS_SUCCESS,
+    SESSIONS_STATISTICS_FAIL,
 } from '../constants/sessionConstants'
 
 
@@ -60,6 +68,34 @@ export const sessionCreateReducer = (state={}, action) => {
             return {loading: false, error: action.payload}
         case SESSION_CREATE_RESET:
             return {}
+        default:
+            return state
+    }
+}
+
+
+export const roomSessionsStatisticsReducer = (state={statistics:[]}, action) => {
+    switch(action.type) {
+        case ROOM_SESSIONS_STATISTICS_REQUEST:
+            return {loading: true, statistics:[]}
+        case ROOM_SESSIONS_STATISTICS_SUCCESS:
+            return {loading: false, statistics: action.payload}
+        case ROOM_SESSIONS_STATISTICS_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+
+export const sessionsStatisticsReducer = (state={statistics:[]}, action) => {
+    switch(action.type) {
+        case SESSIONS_STATISTICS_REQUEST:
+            return {loading: true, statistics:[]}
+        case SESSIONS_STATISTICS_SUCCESS:
+            return {loading: false, statistics: action.payload}
+        case SESSIONS_STATISTICS_FAIL:
+            return {loading: false, error: action.payload}
         default:
             return state
     }
