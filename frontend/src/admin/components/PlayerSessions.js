@@ -15,7 +15,7 @@ import SessionService from '../services/SessionService'
 import Pagination from '../../components/Pagination'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
-import SessionFilter from './SessionFilter'
+import SessionFilter from '../../components/SessionFilter'
 
 
 export default () => {
@@ -23,6 +23,9 @@ export default () => {
     const sessionService = new SessionService()
 
     const dispatch = useDispatch()
+
+    const userLogin = useSelector(state => state.userLogin)
+    const {userInfo} = userLogin
 
     const sessionList = useSelector(state => state.sessionList)
     const {loading, error, sessions, num_pages} = sessionList
@@ -35,7 +38,7 @@ export default () => {
     })
 
     useEffect(() => {
-        dispatch(sessionService.listPlayerSessions())
+        dispatch(sessionService.listPlayerSessions(userInfo.id))
     }, [dispatch])
 
     const filterHandler = (startDate, endDate, order, result) => {
@@ -47,7 +50,7 @@ export default () => {
         }
         
         setFilterParams(params)
-        dispatch(sessionService.listPlayerSessions(params))
+        dispatch(sessionService.listPlayerSessions(userInfo.id, params))
     }
 
     return (

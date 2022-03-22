@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { Row, Col, Button } from 'react-bootstrap'
-import SessionChart from '../components/SessionChart'
+import SessionChart from '../../components/SessionChart'
 
 import SessionService from '../services/SessionService'
 import Loader from '../../components/Loader'

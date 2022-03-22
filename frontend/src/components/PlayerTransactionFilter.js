@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { ListGroup, Row, Col, Form, Button } from 'react-bootstrap'
 import DatePicker from 'react-datepicker'
 
-import { PlayerTransactionTypeEnum } from '../../constants/enums'
+import { PlayerTransactionTypeEnum } from '../constants/enums'
 
 
 export default ({filterHandler, filterParams}) => {

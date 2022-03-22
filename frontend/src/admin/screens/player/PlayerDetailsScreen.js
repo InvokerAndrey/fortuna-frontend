@@ -8,15 +8,15 @@ import { Row, Col, Button, Tabs, Tab } from 'react-bootstrap'
 import { PLAYER_DELETE_RESET } from '../../constants/playerConstants'
 import { PLAYER_ROOM_DELETE_RESET } from '../../constants/roomConstants'
 
+import SessionService from '../../../player/services/SessionService'
 import PlayerService from '../../services/PlayerService'
-import SessionService from '../../services/SessionService'
 import Loader from '../../../components/Loader'
 import Message from '../../../components/Message'
 import PlayerRooms from '../../components/PlayerRooms'
-import RoomTransactions from '../../components/RoomTransactions'
-import PlayerTransactions from '../../components/PlayerTransactions'
-import Sessions from '../../../player/components/Sessions'
-import SessionChart from '../../../player/components/SessionChart'
+import RoomTransactions from '../../../components/RoomTransactions'
+import PlayerTransactions from '../../../components/PlayerTransactions'
+import Sessions from '../../../components/Sessions'
+import SessionChart from '../../../components/SessionChart'
 
 
 export default () => {
@@ -42,7 +42,6 @@ export default () => {
     const sessionsStatistics = useSelector(state => state.sessionsStatistics)
     const {loading: loadingStats, error: errorStats, statistics} = sessionsStatistics
 
-
     useEffect(() => {
         dispatch(playerService.getPlayerDetails(id))
         if (successDelete) {
@@ -52,8 +51,11 @@ export default () => {
         if (successPlayerRoomDelete) {
             dispatch({type: PLAYER_ROOM_DELETE_RESET})
         }
-        dispatch(sessionService.getSessionStatistics(id))
-    }, [dispatch, successDelete, successPlayerRoomDelete])
+    }, [dispatch, successDelete, successPlayerRoomDelete, id])
+
+    useEffect(() => {
+        dispatch(sessionService.getSessionStatistics(player.user.id))
+    }, [dispatch, player, id])
 
     const deleteHandler = (id, name, callback) => {
         if(window.confirm(`Are you sure you want to delete ${name}?`)){
@@ -115,7 +117,7 @@ export default () => {
                                         <PlayerRooms player={player} deleteHandler={deleteHandler}/>
                                     </Tab>
                                     <Tab eventKey='sessions' title='Sessions'>
-                                        <Sessions />
+                                        <Sessions userID={player.user.id} showAdd={false} />
                                         {
                                             loadingStats ? <Loader />
                                                 : errorStats ? <Message variant='danger'>{errorStats}</Message>
@@ -126,10 +128,10 @@ export default () => {
                                         }
                                     </Tab>
                                     <Tab eventKey='room_transactions' title='Room Transactions'>
-                                        <RoomTransactions player={player} />
+                                        <RoomTransactions userID={player.user.id} showAdd={false} />
                                     </Tab>
                                     <Tab eventKey='player_transactions' title='Player Transactions'>
-                                        <PlayerTransactions player={player} />
+                                        <PlayerTransactions userID={player.user.id} showAdd={true} />
                                     </Tab>
                                 </Tabs>
                             </>

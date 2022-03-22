@@ -12,17 +12,17 @@ export default ({statistics}) => {
         labels: statistics.map(data => moment(data.created_at).format('DD.MM')),
         datasets: [
             {
-                label: 'Results',
-                data: statistics.map(data => data.result),
-                borderColor: 'grey',
-                backgroundColor: 'grey',
-            },
-            {
                 label: 'Profit',
                 data: statistics.map(data => data.profit),
                 borderColor: 'black',
                 backgroundColor: 'black',
-            }
+            },
+            {
+                label: 'Results',
+                data: statistics.map(data => data.result),
+                borderColor: '#d6d5d2',
+                backgroundColor: '#d6d5d2',
+            },
         ],
     }
 

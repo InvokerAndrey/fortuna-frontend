@@ -16,11 +16,9 @@ import {
 
 export default class TransactionService {
     BASE_URL = 'api/transactions/player/'
-    ROOM_TRANSACTION_LIST_URL = this.BASE_URL + 'room-transaction/list/'
-    PLAYER_TRANSACTION_LIST_URL = this.BASE_URL + 'player-transaction/list/'
     ROOM_TRANSACTION_ADD_URL = this.BASE_URL + 'room-transaction/add/'
 
-    listPlayerRoomTransactions = (params={}) => async (dispatch, getState) => {
+    listPlayerRoomTransactions = (id, params={}) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: ROOM_TRANSACTION_LIST_REQUEST,
@@ -39,7 +37,7 @@ export default class TransactionService {
             }
 
             const {data} = await axios.get(
-                this.ROOM_TRANSACTION_LIST_URL,
+                this.BASE_URL + `user/${id}/room-transaction/list/`,
                 config
             )
 
@@ -57,7 +55,7 @@ export default class TransactionService {
         }
     }
 
-    listPlayerPlayerTransactions = (params={}) => async (dispatch, getState) => {
+    listPlayerPlayerTransactions = (id, params={}) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: PLAYER_TRANSACTION_LIST_REQUEST,
@@ -76,7 +74,7 @@ export default class TransactionService {
             }
 
             const {data} = await axios.get(
-                this.PLAYER_TRANSACTION_LIST_URL,
+                this.BASE_URL + `user/${id}/player-transaction/list/`,
                 config
             )
 

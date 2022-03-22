@@ -8,9 +8,8 @@ import {
 
 export default class PlayerService {
     BASE_URL = 'api/users/player/'
-    PLAYER_PROFILE_DETAILS_URL = this.BASE_URL + 'profile/'
 
-    getProfileDetails = () => async (dispatch, getState) => {
+    getProfileDetails = (id) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: PROFILE_DETAILS_REQUEST,
@@ -27,7 +26,10 @@ export default class PlayerService {
                 }
             }
 
-            const {data} = await axios.get(this.PLAYER_PROFILE_DETAILS_URL, config)
+            const {data} = await axios.get(
+                this.BASE_URL + `user/${id}/profile/`,
+                config
+            )
 
             dispatch({
                 type: PROFILE_DETAILS_SUCCESS,

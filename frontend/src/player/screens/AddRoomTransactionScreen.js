@@ -46,7 +46,7 @@ export default () => {
     }, [navigate, userInfo, redirect])
 
     useEffect(() => {
-        dispatch(roomService.listPlayerRooms())
+        dispatch(roomService.listPlayerRooms(userInfo.id))
         if (successTransaction) {
             dispatch({type: ROOM_TRANSACTION_ADD_RESET})
             navigate(`/player/room-transactions`)

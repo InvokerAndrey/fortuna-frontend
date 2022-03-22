@@ -17,6 +17,9 @@ export default () => {
 
     const dispatch = useDispatch()
 
+    const userLogin = useSelector(state => state.userLogin)
+    const {userInfo} = userLogin
+
     const playerProfileDetails = useSelector(state => state.playerProfileDetails)
     const {loading: loadingProfile, error: errorProfile, profile} = playerProfileDetails
 
@@ -24,8 +27,8 @@ export default () => {
     const {loading: loadingRooms, error: errorRooms, rooms} = playerRoomList
 
     useEffect(() => {
-        dispatch(profileService.getProfileDetails())
-        dispatch(roomService.listPlayerRooms())
+        dispatch(profileService.getProfileDetails(userInfo.id))
+        dispatch(roomService.listPlayerRooms(userInfo.id))
     }, [dispatch])
 
     return (

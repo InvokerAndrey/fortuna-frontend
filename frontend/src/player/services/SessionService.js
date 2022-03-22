@@ -24,13 +24,8 @@ import {
 
 export default class SessionService {
     BASE_URL = 'api/sessions/'
-    SESSION_LIST_URL = this.BASE_URL + 'list/'
-    SESSION_DETAILS_URL = this.BASE_URL
-    SESSION_CREATE_URL = this.BASE_URL + 'create/'
-    ROOM_SESSIONS_STATISTICS_URL = this.BASE_URL + 'player-room/'
-    SESSIONS_STATISTICS_URL = this.BASE_URL + `statistics/`
 
-    listPlayerSessions = (params={}) => async (dispatch, getState) => {
+    listPlayerSessions = (id, params={}) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: SESSION_LIST_REQUEST,
@@ -49,7 +44,7 @@ export default class SessionService {
             }
 
             const {data} = await axios.get(
-                this.SESSION_LIST_URL,
+                this.BASE_URL + `user/${id}/list/`,
                 config,
             )
 
@@ -85,7 +80,7 @@ export default class SessionService {
             }
 
             const {data} = await axios.get(
-                this.SESSION_DETAILS_URL + `${id}/`,
+                this.BASE_URL + `${id}/`,
                 config
             )
 
@@ -103,7 +98,7 @@ export default class SessionService {
         }
     }
 
-    createSession = (session={}) => async (dispatch, getState) => {
+    createSession = (id, session={}) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: SESSION_CREATE_REQUEST,
@@ -121,7 +116,7 @@ export default class SessionService {
             }
 
             const {data} = await axios.post(
-                this.SESSION_CREATE_URL,
+                this.BASE_URL + `user/${id}/create/`,
                 session,
                 config
             )
@@ -158,7 +153,7 @@ export default class SessionService {
             }
 
             const {data} = await axios.get(
-                this.ROOM_SESSIONS_STATISTICS_URL + `${id}/statistics/`,
+                this.BASE_URL + `player-room/${id}/statistics/`,
                 config
             )
 
@@ -176,7 +171,7 @@ export default class SessionService {
         }
     }
 
-    getSessionStatistics = () => async (dispatch, getState) => {
+    getSessionStatistics = (id) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: SESSIONS_STATISTICS_REQUEST,
@@ -194,7 +189,7 @@ export default class SessionService {
             }
 
             const {data} = await axios.get(
-                this.SESSIONS_STATISTICS_URL,
+                this.BASE_URL + `user/${id}/statistics/`,
                 config
             )
 
