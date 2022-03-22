@@ -28,7 +28,7 @@ export default () => {
     const playerRoomDetails = useSelector(state => state.playerRoomDetails)
     const {loading: loadingDetail, error: errorDetail, playerRoom} = playerRoomDetails
 
-    const [newNick, setNewNick] = useState(roomService.nickname)
+    const [newNick, setNewNick] = useState('')
 
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
@@ -43,15 +43,17 @@ export default () => {
     }, [navigate, userInfo, redirect])
 
     useEffect(() => {
-        dispatch(roomService.getPlayerRoomDetails(id))
-    }, [dispatch])
-
-    useEffect(() => {
         if (success) {
             dispatch({type: PLAYER_ROOM_UPDATE_RESET})
             navigate('/player/profile')
+        } else {
+            if (playerRoom.id !== Number(id)) {
+                dispatch(roomService.getPlayerRoomDetails(id))
+            } else {
+                setNewNick(playerRoom.nickname)
+            }
         }
-    }, [dispatch, submitHandler, success])
+    }, [dispatch, id, success, playerRoom])
 
     const submitHandler = (e) => {
         e.preventDefault()

@@ -68,6 +68,7 @@ function App() {
                   <Route path='/add/room' element={<RoomAddScreen />} />
                   <Route path='/add/player-transaction/:id' element={<AddPlayerTransactionScreen />} />
                   <Route path='/add/player-room/:id' element={<AddPlayerRoomScreen />} />
+                  <Route path='/admin/players/:id/room/:id' element={<PlayerRoomStatisticsScreen />} />
                 </>
               )
             }

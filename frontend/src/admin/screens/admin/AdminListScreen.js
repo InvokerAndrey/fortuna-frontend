@@ -20,7 +20,7 @@ export default () => {
     const dispatch = useDispatch()
 
     const adminList = useSelector(state => state.adminList)   
-    const {loading, error, admins} = adminList 
+    const {loading, error, admins, count} = adminList 
 
     useEffect(() => {
         dispatch(adminService.listAdmins())
@@ -30,7 +30,7 @@ export default () => {
         <div>
             <Row>
                 <Col>
-                    <h1>Admins</h1>
+                    <h1>{count} Admins</h1>
                 </Col>
                 <Col style={{textAlign: "right"}}>
                     <LinkContainer to={'/register/admin'}>

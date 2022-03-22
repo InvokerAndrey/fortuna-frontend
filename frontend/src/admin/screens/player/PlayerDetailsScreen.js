@@ -9,16 +9,20 @@ import { PLAYER_DELETE_RESET } from '../../constants/playerConstants'
 import { PLAYER_ROOM_DELETE_RESET } from '../../constants/roomConstants'
 
 import PlayerService from '../../services/PlayerService'
+import SessionService from '../../services/SessionService'
 import Loader from '../../../components/Loader'
 import Message from '../../../components/Message'
 import PlayerRooms from '../../components/PlayerRooms'
 import RoomTransactions from '../../components/RoomTransactions'
 import PlayerTransactions from '../../components/PlayerTransactions'
+import Sessions from '../../../player/components/Sessions'
+import SessionChart from '../../../player/components/SessionChart'
 
 
 export default () => {
 
     const playerService = new PlayerService()
+    const sessionService = new SessionService()
 
     const dispatch = useDispatch()
 
@@ -35,6 +39,10 @@ export default () => {
     const playerRoomDelete = useSelector(state => state.playerRoomDelete)
     const {success: successPlayerRoomDelete} = playerRoomDelete
 
+    const sessionsStatistics = useSelector(state => state.sessionsStatistics)
+    const {loading: loadingStats, error: errorStats, statistics} = sessionsStatistics
+
+
     useEffect(() => {
         dispatch(playerService.getPlayerDetails(id))
         if (successDelete) {
@@ -44,6 +52,7 @@ export default () => {
         if (successPlayerRoomDelete) {
             dispatch({type: PLAYER_ROOM_DELETE_RESET})
         }
+        dispatch(sessionService.getSessionStatistics(id))
     }, [dispatch, successDelete, successPlayerRoomDelete])
 
     const deleteHandler = (id, name, callback) => {
@@ -61,7 +70,7 @@ export default () => {
                     </Button>
                 </Col>
                 <Col>
-                    <Button className='btn btn-dark my-3' onClick={() => navigate(`/players/${id}/edit`)}>
+                    <Button className='btn btn-dark my-3' onClick={() => navigate(`/admin/players/${id}/edit`)}>
                         Edit
                     </Button>
                 </Col>
@@ -104,6 +113,17 @@ export default () => {
                                 <Tabs defaultActiveKey='rooms' id='player-details' className='mb-3'>
                                     <Tab eventKey='rooms' title='Rooms'>
                                         <PlayerRooms player={player} deleteHandler={deleteHandler}/>
+                                    </Tab>
+                                    <Tab eventKey='sessions' title='Sessions'>
+                                        <Sessions />
+                                        {
+                                            loadingStats ? <Loader />
+                                                : errorStats ? <Message variant='danger'>{errorStats}</Message>
+                                                    :
+                                                        <Row className='my-4'>
+                                                            <SessionChart statistics={statistics} />
+                                                        </Row>
+                                        }
                                     </Tab>
                                     <Tab eventKey='room_transactions' title='Room Transactions'>
                                         <RoomTransactions player={player} />

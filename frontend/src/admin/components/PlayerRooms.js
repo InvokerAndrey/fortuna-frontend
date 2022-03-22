@@ -4,7 +4,7 @@ import { Table, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
 import { FaTrash } from 'react-icons/fa'
-import { ImProfile } from 'react-icons/im'
+import { AiOutlineFundView } from 'react-icons/ai'
 import { FcPlus } from 'react-icons/fc'
 
 import RoomService from '../services/RoomService'
@@ -22,7 +22,7 @@ export default ({ player, deleteHandler }) => {
                     <th>NAME</th>
                     <th>NICKNAME</th>
                     <th>BALANCE</th>
-                    <th>DETAILS</th>
+                    <th>STATISTICS</th>
                     <th>DELETE</th>
                 </tr>
             </thead>
@@ -34,8 +34,8 @@ export default ({ player, deleteHandler }) => {
                         <td>{room.nickname}</td>
                         <td>${room.balance}</td>
                         <td>
-                            <LinkContainer to={`${room.id}`}>
-                                <Button variant='white' title='Details'><ImProfile /></Button>
+                            <LinkContainer to={`room/${room.id}`}>
+                                <Button variant='white' title='Details'><AiOutlineFundView /></Button>
                             </LinkContainer>
                         </td>
                         <td>

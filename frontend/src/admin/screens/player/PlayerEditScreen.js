@@ -21,8 +21,10 @@ export default () => {
     const {id} = useParams()
     const playerService = new PlayerService()
 
+    const [email, setEmail] = useState('')
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
     const [rate, setRate] = useState(0)
-    const [rooms, setRooms] = useState([])
 
     const playerDetails = useSelector(state => state.playerDetails)
     const {loading, error, player} = playerDetails
@@ -41,14 +43,16 @@ export default () => {
                 dispatch(playerService.getPlayerDetails(id))
             } else {
                 setRate(player.rate)
-                setRooms(player.rooms)
+                setEmail(player.user.email)
+                setFirstName(player.user.first_name)
+                setLastName(player.user.last_name)
             }
         }
     }, [dispatch, id, player, successUpdate])
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(playerService.updatePlayer(id, rate, rooms))
+        dispatch(playerService.updatePlayer(id, email, firstName, lastName, rate))
     }
 
     return (
@@ -63,7 +67,37 @@ export default () => {
                 {
                     loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
                         <Form onSubmit={submitHandler}>
-                            <Form.Group controlId='rate'>
+                            <Form.Group controlId='email'>
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control
+                                    type='email'
+                                    placeholder='email'
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+                            <Form.Group controlId='firstName' className='my-2'>
+                                <Form.Label>First name</Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    placeholder='First name'
+                                    value={firstName}
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+                            <Form.Group controlId='LastName' className='my-2'>
+                                <Form.Label>Last name</Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    placeholder='Last name'
+                                    value={lastName}
+                                    onChange={(e) => setLastName(e.target.value)}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+                            <Form.Group controlId='rate' className='my-2'>
                                 <Form.Label>Rate</Form.Label>
                                 <Form.Control
                                     type='number'
@@ -73,17 +107,7 @@ export default () => {
                                 >
                                 </Form.Control>
                             </Form.Group>
-
-                            <Form.Group controlId='rooms'>
-                                <Form.Label>Rooms</Form.Label>
-                                <Form.Control
-                                    type='select'
-                                    placeholder='rooms'
-                                    value={rooms}
-                                    onChange={(e) => setRooms(e.target.value)}
-                                >
-                                </Form.Control>
-                            </Form.Group>
+                            <Button className='btn btn-block mt-3' type='submit' variant='dark'>Edit</Button>
                         </Form>
                     )
                 }

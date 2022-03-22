@@ -21,7 +21,7 @@ export default () => {
     const dispatch = useDispatch()
 
     const playerList = useSelector(state => state.playerList)   
-    const {loading, error, players, page, num_pages} = playerList
+    const {loading, error, players, count, num_pages} = playerList
 
     const playerDelete = useSelector(state => state.playerDelete)   
     const {success: successDelete} = playerDelete 
@@ -40,7 +40,7 @@ export default () => {
         <div>
             <Row>
                 <Col>
-                    <h1>Players</h1>
+                    <h1>{count} Players</h1>
                 </Col>
                 <Col style={{textAlign: "right"}}>
                     <LinkContainer to={'/register/player'}>

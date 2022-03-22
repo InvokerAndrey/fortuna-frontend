@@ -19,7 +19,7 @@ export default () => {
     const dispatch = useDispatch()
 
     const roomList = useSelector(state => state.roomList)   
-    const {loading, error, rooms} = roomList
+    const {loading, error, rooms, count} = roomList
 
     const roomDelete = useSelector(state => state.roomDelete)
     const {success: successDelete} = roomDelete
@@ -38,7 +38,7 @@ export default () => {
         <div>
             <Row>
                 <Col>
-                    <h1>Rooms</h1>
+                    <h1>{count} Rooms</h1>
                 </Col>
                 <Col style={{textAlign: "right"}}>
                     <LinkContainer to={'/add/room'}>
