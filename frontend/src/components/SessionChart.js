@@ -26,7 +26,19 @@ export default ({statistics}) => {
         ],
     }
 
+    const options = {
+        scales: {
+            y: {
+                ticks: {
+                    callback: (value, index, ticks) => {
+                        return value + '$'
+                    }
+                }
+            }
+        }
+    }
+
     return (
-        <Line data={sessionData} />
+        <Line data={sessionData} options={options} />
     )
 }
