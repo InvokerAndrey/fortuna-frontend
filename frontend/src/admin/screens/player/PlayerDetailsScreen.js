@@ -20,7 +20,7 @@ import SessionChart from '../../../components/SessionChart'
 
 
 export default () => {
-
+    
     const playerService = new PlayerService()
     const sessionService = new SessionService()
 
@@ -43,7 +43,6 @@ export default () => {
     const {loading: loadingStats, error: errorStats, statistics} = sessionsStatistics
 
     useEffect(() => {
-        dispatch(playerService.getPlayerDetails(id))
         if (successDelete) {
             dispatch({type: PLAYER_DELETE_RESET})
             navigate('/admin/players')
@@ -51,7 +50,11 @@ export default () => {
         if (successPlayerRoomDelete) {
             dispatch({type: PLAYER_ROOM_DELETE_RESET})
         }
-    }, [dispatch, successDelete, successPlayerRoomDelete, id])
+    }, [dispatch, successDelete, successPlayerRoomDelete])
+
+    useEffect(() => {
+        dispatch(playerService.getPlayerDetails(id))
+    }, [dispatch, id])
 
     useEffect(() => {
         dispatch(sessionService.getSessionStatistics(player.user.id))

@@ -53,7 +53,7 @@ export default () => {
                 setNewNick(playerRoom.nickname)
             }
         }
-    }, [dispatch, id, success, playerRoom])
+    }, [dispatch, id, success])
 
     const submitHandler = (e) => {
         e.preventDefault()

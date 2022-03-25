@@ -45,7 +45,7 @@ export default ({userID, showAdd}) => {
             order: order,
             result: result,
         }
-        
+
         setFilterParams(params)
         dispatch(sessionService.listPlayerSessions(userID, params))
     }
