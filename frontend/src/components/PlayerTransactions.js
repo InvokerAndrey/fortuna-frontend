@@ -34,8 +34,10 @@ export default ({userID, showAdd}) => {
     const {loading, error, playerTransactions, page, num_pages} = playerTransactionList
 
     useEffect(() => {
-        dispatch(transactionService.listPlayerPlayerTransactions(userID))
-    }, [dispatch, filterHandler, setFilterParams, userID])
+        if (userID) {
+            dispatch(transactionService.listPlayerPlayerTransactions(userID))
+        }
+    }, [dispatch, userID])
 
     const filterHandler = (startDate, endDate, order, type) => {
         const params = {

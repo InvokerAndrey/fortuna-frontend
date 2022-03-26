@@ -7,6 +7,7 @@ import {
     PLAYER_DETAILS_REQUEST,
     PLAYER_DETAILS_SUCCESS,
     PLAYER_DETAILS_FAIL,
+    PLAYER_DETAILS_RESET,
 
     PLAYER_UPDATE_REQUEST,
     PLAYER_UPDATE_SUCCESS,
@@ -68,6 +69,8 @@ export const playerDetailsReducer = (state={player:{user:{}, rooms:[], room_tran
             return {loading: false, player: action.payload}
         case PLAYER_DETAILS_FAIL:
             return {loading: false, error: action.payload}
+        case PLAYER_DETAILS_RESET:
+            return {player:{user:{}, rooms:[], room_transactions:[], player_transactions:[]}}
         default:
             return state
     }

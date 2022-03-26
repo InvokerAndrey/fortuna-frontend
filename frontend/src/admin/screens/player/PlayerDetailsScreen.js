@@ -5,7 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 import { Row, Col, Button, Tabs, Tab } from 'react-bootstrap'
 
-import { PLAYER_DELETE_RESET } from '../../constants/playerConstants'
+import { PLAYER_DELETE_RESET, PLAYER_DETAILS_RESET } from '../../constants/playerConstants'
 import { PLAYER_ROOM_DELETE_RESET } from '../../constants/roomConstants'
 
 import SessionService from '../../../player/services/SessionService'
@@ -53,12 +53,22 @@ export default () => {
     }, [dispatch, successDelete, successPlayerRoomDelete])
 
     useEffect(() => {
-        dispatch(playerService.getPlayerDetails(id))
+        console.log('player id:', id)
+        if (id) {
+            dispatch(playerService.getPlayerDetails(id))
+        }
+        return () => {
+            console.log('unsub')
+            dispatch({type: PLAYER_DETAILS_RESET})
+        }
     }, [dispatch, id])
 
     useEffect(() => {
-        dispatch(sessionService.getSessionStatistics(player.user.id))
-    }, [dispatch, player, id])
+        console.log('user id:', player.user.id)
+        if (player.user.id) {
+            dispatch(sessionService.getSessionStatistics(player.user.id))
+        }
+    }, [dispatch, player])
 
     const deleteHandler = (id, name, callback) => {
         if(window.confirm(`Are you sure you want to delete ${name}?`)){

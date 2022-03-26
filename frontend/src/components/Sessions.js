@@ -34,9 +34,14 @@ export default ({userID, showAdd}) => {
         result: 0
     })
 
+    console.log(userID)
+    console.log(sessionList)
+
     useEffect(() => {
-        dispatch(sessionService.listPlayerSessions(userID))
-    }, [dispatch, filterHandler, setFilterParams, userID])
+        if (userID) {
+            dispatch(sessionService.listPlayerSessions(userID))
+        }
+    }, [dispatch, userID])
 
     const filterHandler = (startDate, endDate, order, result) => {
         const params = {

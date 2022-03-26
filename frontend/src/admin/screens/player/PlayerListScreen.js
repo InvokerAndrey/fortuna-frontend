@@ -24,7 +24,7 @@ export default () => {
     const {loading, error, players, count, num_pages} = playerList
 
     const playerDelete = useSelector(state => state.playerDelete)   
-    const {success: successDelete} = playerDelete 
+    const {success: successDelete} = playerDelete
 
     useEffect(() => {
         dispatch(playerService.listPlayers())

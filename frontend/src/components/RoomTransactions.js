@@ -35,8 +35,10 @@ export default ({userID, showAdd}) => {
     const {loading, error, roomTransactions, num_pages} = roomTransactionList
 
     useEffect(() => {
-        dispatch(transactionService.listPlayerRoomTransactions(userID))
-    }, [dispatch, filterHandler, setFilterParams, userID])
+        if (userID) {
+            dispatch(transactionService.listPlayerRoomTransactions(userID))
+        }
+    }, [dispatch, userID])
 
     const filterHandler = (startDate, endDate, order, type) => {
         const params = {

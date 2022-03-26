@@ -27,6 +27,7 @@ export default class SessionService {
 
     listPlayerSessions = (id, params={}) => async (dispatch, getState) => {
         try {
+            console.log('ID:', id)
             dispatch({
                 type: SESSION_LIST_REQUEST,
             })
@@ -47,6 +48,8 @@ export default class SessionService {
                 this.BASE_URL + `user/${id}/list/`,
                 config,
             )
+
+            console.log('data:', data)
 
             dispatch({
                 type: SESSION_LIST_SUCCESS,
