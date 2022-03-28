@@ -76,7 +76,7 @@ export default ({userID, showAdd}) => {
                                             <tbody>
                                                 { 
                                                     showAdd ?
-                                                        <LinkContainer to={`/add/player-transaction/`}>
+                                                        <LinkContainer to={`add/player-transaction/`}>
                                                             <tr title='Add new Player Transaction'>
                                                                 <td></td>
                                                                 <td></td>

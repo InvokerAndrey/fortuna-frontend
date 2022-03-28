@@ -41,7 +41,7 @@ export default class TransactionService {
                 this.ADD_PLAYER_TRANSACTION_URL,
                 {
                     'player_id': playerId,
-                    'type': type,
+                    'type': +type,
                     'amount': +amount,
                 },
                 config

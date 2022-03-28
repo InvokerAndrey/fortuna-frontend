@@ -104,20 +104,48 @@ export default () => {
                             <>
                                 <Row className='my-4'>
                                     <Col>
-                                        <h1>{player.user.full_name}</h1>
-                                    </Col>
-                                    <Col style={{fontWeight: 'bold'}}>
                                         <Row>
-                                            <Col md={2}>EMAIL:</Col>
-                                            <Col>{player.user.email}</Col>
+                                            <Col>
+                                                <h1>{player.user.full_name}</h1>
+                                            </Col>
                                         </Row>
                                         <Row>
-                                            <Col md={2} title='Profit share'>RATE:</Col>
+                                            <Col>{player.user.email}</Col>
+                                        </Row>
+                                    </Col>
+                                    
+                                    <Col style={{fontWeight: 'bold'}}>
+                                        <Row>
+                                            <Col md={6} title='Profit share'>RATE:</Col>
                                             <Col>{player.rate}%</Col>
                                         </Row>
                                         <Row>
-                                            <Col md={2} title='Money that is not in the game'>BALANCE:</Col>
-                                            <Col>${player.balance}</Col>
+                                            <Col md={6} title='Money that is not in the game'>BALANCE:</Col>
+                                            <Col>{player.balance}$</Col>
+                                        </Row>
+                                        <Row>
+                                            <Col md={6}>TOTAL IN ROOMS:</Col>
+                                            <Col>{player.total_rooms_balance}$</Col>
+                                        </Row>
+                                        <Row>
+                                            <Col md={6} title='How much player owes admin'>DUTY:</Col>
+                                            <Col>{player.duty}$</Col>
+                                        </Row>
+                                        <Row>
+                                            <Col md={6}>ALL TIME PROFIT:</Col>
+                                            <Col>{player.all_time_profit}$</Col>
+                                        </Row>
+                                        <Row>
+                                            <Col md={6} title='How much profit player owes admin'>ADMIN'S PROFIT SHARE:</Col>
+                                            <Col>{player.admin_profit_share}$</Col>
+                                        </Row>
+                                        <Row>
+                                            <Col md={6}>PLAYER'S PROFIT SHARE:</Col>
+                                            <Col>{player.self_profit_share}$</Col>
+                                        </Row>
+                                        <Row>
+                                            <Col md={6}>PLAYER'S SALARY:</Col>
+                                            <Col>{player.salary}$</Col>
                                         </Row>
                                     </Col>
                                 </Row>

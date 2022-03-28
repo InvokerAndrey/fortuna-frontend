@@ -41,19 +41,19 @@ export class RoomTransactionTypeEnum extends Enum {
 export class PlayerTransactionTypeEnum extends Enum {
     static obj = {
         ADMIN_TO_PLAYER_GAME: {id: 1, verbose: 'For gambling'},
-        PLAYER_TO_ADMIN_PROFIT: {id: 2, verbose: 'Profit from gambling'},
-        ADMIN_TO_PLAYER_SALARY: {id: 3, verbose: 'Player salary'},
+        PLAYER_TO_ADMIN_DUTY: {id: 2, verbose: 'Duty payback'},
+        PLAYER_TO_ADMIN_PROFIT: {id: 3, verbose: 'Admin profit share'}
     }
 
     static get ADMIN_TO_PLAYER_GAME() {
         return this.obj.ADMIN_TO_PLAYER_GAME.id
     }
 
-    static get PLAYER_TO_ADMIN_PROFIT() {
-        return this.obj.PLAYER_TO_ADMIN_PROFIT.id
+    static get PLAYER_TO_ADMIN_DUTY() {
+        return this.obj.PLAYER_TO_ADMIN_DUTY.id
     }
 
-    static get ADMIN_TO_PLAYER_SALARY() {
-        return this.obj.ADMIN_TO_PLAYER_SALARY.id
+    static get PLAYER_TO_ADMIN_PROFIT() {
+        return this.obj.PLAYER_TO_ADMIN_PROFIT.id
     }
 }

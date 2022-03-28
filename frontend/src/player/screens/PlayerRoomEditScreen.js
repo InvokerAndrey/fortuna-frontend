@@ -34,7 +34,7 @@ export default () => {
     const {userInfo} = userLogin
 
     const playerRoomUpdate = useSelector(state => state.playerRoomUpdate)
-    const {loading, error, success} = playerRoomUpdate
+    const {error, success} = playerRoomUpdate
 
     useEffect(() => {
         if (!userInfo) {

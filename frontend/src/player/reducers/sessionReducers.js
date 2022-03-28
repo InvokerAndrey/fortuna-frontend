@@ -22,14 +22,14 @@ import {
 } from '../constants/sessionConstants'
 
 
-export const sessionListReducer = (state={sessions:[]}, action) => {
+export const sessionListReducer = (state={results:{sessions:[]}}, action) => {
     switch(action.type) {
         case SESSION_LIST_REQUEST:
             return {loading: true, sessions:[]}
         case SESSION_LIST_SUCCESS:
             return {
                 loading: false,
-                sessions: action.payload.results,
+                results: action.payload.results,
                 page: action.payload.page,
                 previous: action.payload.previous,
                 next: action.payload.next,

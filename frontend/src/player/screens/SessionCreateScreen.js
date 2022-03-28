@@ -44,7 +44,9 @@ export default () => {
     }, [navigate, userInfo, redirect])
 
     useEffect(() => {
-        dispatch(roomService.listPlayerRooms())
+        if (userInfo.id) {
+            dispatch(roomService.listPlayerRooms(userInfo.id))
+        }
         if (successCreate) {
             dispatch({type: SESSION_CREATE_RESET})
             navigate(`/player/sessions`)
@@ -79,7 +81,9 @@ export default () => {
         const sessionObject = {
             'room_sessions': roomSessions
         }
-        dispatch(sessionService.createSession(sessionObject))
+        if (userInfo.id) {
+            dispatch(sessionService.createSession(userInfo.id, sessionObject))
+        }
     }
 
     return (
@@ -118,12 +122,13 @@ export default () => {
                                                                 </Form.Control>
                                                         </Form.Group>
 
-                                                        <Form.Label className='mt-4'>balance</Form.Label>
+                                                        <Form.Label className='mt-4'>Balance</Form.Label>
                                                         <Form.Group controlId='Balance' className='input-group'>   
                                                             <InputGroup.Text>$</InputGroup.Text>
                                                             <Form.Control
                                                                 required
                                                                 type='number'
+                                                                step='.01'
                                                                 name='balance'
                                                                 placeholder='$'
                                                                 value={field.balance}

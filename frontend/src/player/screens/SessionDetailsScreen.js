@@ -53,7 +53,7 @@ export default () => {
                                         <th>ID</th>
                                         <th>ROOM</th>
                                         <th>NICKNAME</th>
-                                        <th>BALANCE</th>
+                                        <th title='Room balance at the end of the session'>BALANCE</th>
                                         <th>RESULT</th>
                                     </tr>
                                 </thead>

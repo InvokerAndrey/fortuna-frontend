@@ -25,7 +25,7 @@ export default ({userID, showAdd}) => {
     const dispatch = useDispatch()
 
     const sessionList = useSelector(state => state.sessionList)
-    const {loading, error, sessions, num_pages} = sessionList
+    const {loading, error, results, num_pages} = sessionList
 
     const [filterParams, setFilterParams] = useState({
         start_date: null,
@@ -60,7 +60,23 @@ export default ({userID, showAdd}) => {
                         :
                             <Row>
                                 <Col md={2}>
-                                    <SessionFilter filterHandler={filterHandler} filterParams={filterParams} />
+                                    <Row>
+                                        <SessionFilter filterHandler={filterHandler} filterParams={filterParams} />
+                                    </Row>
+                                    <Row className='my-2 p-2'>
+                                        <ul>
+                                            <li>
+                                                <strong>Profit: {results.parametrized_profit}$</strong>
+                                            </li>
+                                            <li>
+                                                Admin profit share: <strong>{results.admin_part}$</strong>
+                                            </li>
+                                            <li>
+                                                Player profit share: <strong>{results.player_part}$</strong>
+                                            </li>
+                                        </ul>
+                                        
+                                    </Row>
                                 </Col>
                                 <Col>
                                     <Table hover responsive className="table-sm" style={{textAlign: 'center', verticalAlign: 'middle'}}>
@@ -85,8 +101,8 @@ export default ({userID, showAdd}) => {
                                                     </LinkContainer>
                                                     : <></>
                                             }
-                                            
-                                            {sessions.map(session => (
+
+                                            {results.sessions.map(session => (
                                                 <tr key={session.id}>
                                                     <td>{session.id}</td>
                                                     <td>{moment(session.created_at).format('DD.MM.YYYY')}</td>
@@ -116,7 +132,7 @@ export default ({userID, showAdd}) => {
                                     </Table>
                                 </Col>
                             </Row>
-                            
+
             }
             <Pagination num_pages={num_pages} callback={sessionService.listPlayerSessions} args={[userID]} params={filterParams} />
         </>
