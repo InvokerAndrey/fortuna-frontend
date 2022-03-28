@@ -27,7 +27,6 @@ export default class SessionService {
 
     listPlayerSessions = (id, params={}) => async (dispatch, getState) => {
         try {
-            console.log('ID:', id)
             dispatch({
                 type: SESSION_LIST_REQUEST,
             })
@@ -48,8 +47,6 @@ export default class SessionService {
                 this.BASE_URL + `user/${id}/list/`,
                 config,
             )
-
-            console.log('data:', data)
 
             dispatch({
                 type: SESSION_LIST_SUCCESS,
@@ -138,7 +135,7 @@ export default class SessionService {
         }
     }
 
-    getRoomSessionStatistics = (id) => async (dispatch, getState) => {
+    getRoomSessionStatistics = (player_id, room_id) => async (dispatch, getState) => {
         try {
             dispatch({
                 type: ROOM_SESSIONS_STATISTICS_REQUEST,
@@ -156,7 +153,7 @@ export default class SessionService {
             }
 
             const {data} = await axios.get(
-                this.BASE_URL + `player-room/${id}/statistics/`,
+                this.BASE_URL + `player/${player_id}/player-room/${room_id}/statistics/`,
                 config
             )
 

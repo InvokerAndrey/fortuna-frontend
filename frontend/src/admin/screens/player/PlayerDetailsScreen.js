@@ -53,18 +53,15 @@ export default () => {
     }, [dispatch, successDelete, successPlayerRoomDelete])
 
     useEffect(() => {
-        console.log('player id:', id)
         if (id) {
             dispatch(playerService.getPlayerDetails(id))
         }
         return () => {
-            console.log('unsub')
             dispatch({type: PLAYER_DETAILS_RESET})
         }
     }, [dispatch, id])
 
     useEffect(() => {
-        console.log('user id:', player.user.id)
         if (player.user.id) {
             dispatch(sessionService.getSessionStatistics(player.user.id))
         }
@@ -115,11 +112,11 @@ export default () => {
                                             <Col>{player.user.email}</Col>
                                         </Row>
                                         <Row>
-                                            <Col md={2}>RATE:</Col>
+                                            <Col md={2} title='Profit share'>RATE:</Col>
                                             <Col>{player.rate}%</Col>
                                         </Row>
                                         <Row>
-                                            <Col md={2}>BALANCE:</Col>
+                                            <Col md={2} title='Money that is not in the game'>BALANCE:</Col>
                                             <Col>${player.balance}</Col>
                                         </Row>
                                     </Col>

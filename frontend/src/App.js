@@ -59,6 +59,7 @@ function App() {
                   <Route path='/admin' element={<HomeScreen />} />
                   <Route path='/admin/players' element={<PlayerListScreen />} />
                   <Route path='/admin/players/:id' element={<PlayerDetailsScreen />} />
+                  <Route path='/admin/players/:id/:session_id' element={<SessionDetailsScreen />} />
                   <Route path='/admin/players/:id/edit' element={<PlayerEditScreen />} />
                   <Route path='/admin/rooms' element={<RoomListScreen />} />
                   <Route path='/admin/rooms/:id' element={<RoomDetailsScreen />} />
@@ -68,7 +69,7 @@ function App() {
                   <Route path='/add/room' element={<RoomAddScreen />} />
                   <Route path='/add/player-transaction/:id' element={<AddPlayerTransactionScreen />} />
                   <Route path='/add/player-room/:id' element={<AddPlayerRoomScreen />} />
-                  <Route path='/admin/players/:id/room/:id' element={<PlayerRoomStatisticsScreen />} />
+                  <Route path='/admin/players/:player_id/room/:room_id' element={<PlayerRoomStatisticsScreen />} />
                 </>
               )
             }
@@ -82,7 +83,7 @@ function App() {
                   <Route path='/add/room-transaction' element={<AddRoomTransactionScreen />}/>
                   <Route path='/player/sessions' element={<SessionListScreen />}/>
                   <Route path='/add/session' element={<SessionCreateScreen />} />
-                  <Route path='/player/sessions/:id' element={<SessionDetailsScreen />} />
+                  <Route path='/player/sessions/:session_id' element={<SessionDetailsScreen />} />
                   <Route path='/player/profile/:id/edit' element={<PlayerRoomEditScreen />} />
                   <Route path='/player/profile/room/:id' element={<PlayerRoomStatisticsScreen />} />
                 </>

@@ -34,9 +34,6 @@ export default ({userID, showAdd}) => {
         result: 0
     })
 
-    console.log(userID)
-    console.log(sessionList)
-
     useEffect(() => {
         if (userID) {
             dispatch(sessionService.listPlayerSessions(userID))

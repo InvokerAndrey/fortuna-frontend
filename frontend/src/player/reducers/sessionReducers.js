@@ -74,12 +74,12 @@ export const sessionCreateReducer = (state={}, action) => {
 }
 
 
-export const roomSessionsStatisticsReducer = (state={statistics:[]}, action) => {
+export const roomSessionsStatisticsReducer = (state={data:{statistics:[]}}, action) => {
     switch(action.type) {
         case ROOM_SESSIONS_STATISTICS_REQUEST:
             return {loading: true, statistics:[]}
         case ROOM_SESSIONS_STATISTICS_SUCCESS:
-            return {loading: false, statistics: action.payload}
+            return {loading: false, data: action.payload}
         case ROOM_SESSIONS_STATISTICS_FAIL:
             return {loading: false, error: action.payload}
         default:

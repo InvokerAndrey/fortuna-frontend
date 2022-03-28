@@ -21,7 +21,7 @@ export default () => {
 
     const dispatch = useDispatch()
 
-    const {id} = useParams()
+    const {session_id} = useParams()
 
     const navigate = useNavigate()
 
@@ -29,7 +29,7 @@ export default () => {
     const {loading, error, session} = sessionDetails
 
     useEffect(() => {
-        dispatch(sessionService.getPlayerSession(id))
+        dispatch(sessionService.getPlayerSession(session_id))
     }, [dispatch])
 
     return (

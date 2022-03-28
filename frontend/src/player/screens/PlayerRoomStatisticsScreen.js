@@ -19,14 +19,20 @@ export default () => {
 
     const dispatch = useDispatch()
 
-    const {id} = useParams()
+    const {player_id, room_id} = useParams()
 
     const roomSessionsStatistics = useSelector(state => state.roomSessionsStatistics)
-    const {loading, error, statistics} = roomSessionsStatistics
+    const {loading, error, data} = roomSessionsStatistics
 
     useEffect(() => {
-        dispatch(sessionService.getRoomSessionStatistics(id))
+        dispatch(sessionService.getRoomSessionStatistics(player_id, room_id))
     }, [dispatch])
+    
+    if (loading) {
+        return <Loader />
+    } else if (error) {
+        return <Message variant='danger'>{error}</Message>
+    }
 
     return (
         <>
@@ -37,14 +43,14 @@ export default () => {
                     </Button>
                 </Col>
             </Row>
-            {
-                loading ? <Loader />
-                    : error ? <Message variant='danger'>{error}</Message>
-                        :
-                            <Row>
-                                <SessionChart statistics={statistics} />
-                            </Row>
-            }
+            <Row>
+                <Col>
+                    <h1>{data.full_name} : {data.room_name}</h1>
+                </Col>
+            </Row>
+            <Row>
+                <SessionChart statistics={data.statistics} />
+            </Row>
         </>
         
     )
