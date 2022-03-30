@@ -7,7 +7,7 @@ import { AiOutlineFundView } from 'react-icons/ai'
 import { FaUserEdit } from 'react-icons/fa'
 
 
-export default ({ rooms }) => {
+export default ({ rooms, playerId }) => {
     return (
         <Table hover responsive className="table-sm" style={{textAlign: 'center', verticalAlign: 'middle'}}>
             <thead>
@@ -33,7 +33,7 @@ export default ({ rooms }) => {
                             </LinkContainer>
                         </td>
                         <td>
-                            <LinkContainer to={`/player/profile/room/${room.id}`}>
+                            <LinkContainer to={`/player/${playerId}/profile/room/${room.id}`}>
                                 <Button variant='white' title='Statistics'><AiOutlineFundView /></Button>
                             </LinkContainer>
                         </td>

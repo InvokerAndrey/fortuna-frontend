@@ -84,8 +84,8 @@ function App() {
                   <Route path='/player/sessions' element={<SessionListScreen />}/>
                   <Route path='/add/session' element={<SessionCreateScreen />} />
                   <Route path='/player/sessions/:session_id' element={<SessionDetailsScreen />} />
-                  <Route path='/player/profile/:id/edit' element={<PlayerRoomEditScreen />} />
-                  <Route path='/player/profile/room/:id' element={<PlayerRoomStatisticsScreen />} />
+                  <Route path='/player/profile/:room_id/edit' element={<PlayerRoomEditScreen />} />
+                  <Route path='/player/:player_id/profile/room/:room_id' element={<PlayerRoomStatisticsScreen />} />
                 </>
               )
             }

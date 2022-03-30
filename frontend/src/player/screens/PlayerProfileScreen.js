@@ -90,13 +90,14 @@ export default () => {
             {
                 loadingRooms ? <Loader />
                     : errorRooms ? <Message variant='danger'>{errorRooms}</Message>
-                        : 
+                        : profile.id ?
                             <>
                                 <Row>
                                     <h3 className='mt-4'>{rooms.length} Rooms</h3>
-                                    <Rooms rooms={rooms}/>
+                                    <Rooms rooms={rooms} playerId={profile.id} />
                                 </Row>
                             </>
+                            : <></>
             }
         </div>
     )

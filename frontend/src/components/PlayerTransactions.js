@@ -31,7 +31,7 @@ export default ({userID, showAdd}) => {
     })
 
     const playerTransactionList = useSelector(state => state.playerTransactionList)
-    const {loading, error, playerTransactions, page, num_pages} = playerTransactionList
+    const {loading, error, playerTransactions, num_pages} = playerTransactionList
 
     useEffect(() => {
         if (userID) {
