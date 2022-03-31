@@ -21,7 +21,7 @@ export default () => {
 
     const navigate = useNavigate()
 
-    const { id } = useParams()
+    const { room_id } = useParams()
 
     const redirect = Location.search ? Location.search.split('=')[1] : '/'
 
@@ -47,13 +47,13 @@ export default () => {
             dispatch({type: PLAYER_ROOM_UPDATE_RESET})
             navigate('/player/profile')
         } else {
-            if (playerRoom.id !== Number(id)) {
-                dispatch(roomService.getPlayerRoomDetails(id))
+            if (playerRoom.id !== Number(room_id)) {
+                dispatch(roomService.getPlayerRoomDetails(room_id))
             } else {
                 setNewNick(playerRoom.nickname)
             }
         }
-    }, [dispatch, id, success])
+    }, [dispatch, room_id, success])
 
     const submitHandler = (e) => {
         e.preventDefault()
