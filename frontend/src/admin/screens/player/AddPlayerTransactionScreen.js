@@ -61,7 +61,10 @@ export default () => {
     }
 
     return (
-        
+        <>
+        <Button className='btn btn-dark my-3' onClick={() => navigate(-1)}>
+                Back
+        </Button>
         <FormContainer>
             <h1>Add Player Transaction</h1>
             {errorTransaction && <Message variant='danger'>{errorTransaction}</Message>}
@@ -103,5 +106,6 @@ export default () => {
                 <Button className='btn btn-block mt-3' type='submit' variant='dark'>Add</Button>
             </Form>
         </FormContainer>
+        </>
     )
 }
