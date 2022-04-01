@@ -32,6 +32,7 @@ import {
 } from './admin/reducers/adminReducers'
 import {
     playerProfileDetailsReducer,
+    playerChangePasswordReducer,
 } from './player/reducers/profileReducers'
 import {
     playerRoomListReducer,
@@ -83,6 +84,7 @@ const reducer = combineReducers({
     playerTransactionList: playerTransactionListReducer,
     playerRoomUpdate: playerRoomUpdateReducer,
     playerRoomDetails: playerRoomDetailsReducer,
+    playerChangePassword: playerChangePasswordReducer,
 
     sessionList: sessionListReducer,
     sessionDetails: sessionDetailsReducer,

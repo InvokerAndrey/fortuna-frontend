@@ -37,7 +37,7 @@ export default () => {
             {
                 loadingProfile ? <Loader />
                     : errorProfile ? <Message variant='danger'>{errorProfile}</Message>
-                        : <PlayerInfo profile={profile} />
+                        : <PlayerInfo profile={profile} isAdmin={userInfo.is_staff}/>
             }
             {
                 loadingRooms ? <Loader />

@@ -1,9 +1,10 @@
 import React from 'react'
 
-import { Row, Col, ListGroup } from 'react-bootstrap'
+import { Row, Col, ListGroup, Button } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 
 
-export default ({profile}) => {
+export default ({profile, isAdmin}) => {
     return (
         <Row className='my-4'>
             <Col>
@@ -14,6 +15,15 @@ export default ({profile}) => {
                 </Row>
                 <Row>
                     <Col>{profile.user.email}</Col>
+                    {
+                    !isAdmin ?
+                        <Col md={8}>
+                            <LinkContainer to={'change-password/'}>
+                                <a className="link-secondary">change password</a>
+                            </LinkContainer>
+                        </Col>
+                        : <></>
+                    }
                 </Row >
                 <ListGroup variant='flush' className='my-4' style={{fontWeight: 'bold'}}>
                     <ListGroup.Item>

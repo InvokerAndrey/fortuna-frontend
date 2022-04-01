@@ -31,6 +31,9 @@ export default () => {
 
     const navigate = useNavigate()
 
+    const userLogin = useSelector(state => state.userLogin)
+    const {userInfo} = userLogin
+
     const playerDetails = useSelector(state => state.playerDetails)
     const {loading, error, player} = playerDetails
 
@@ -103,7 +106,7 @@ export default () => {
                     : error ? <Message variant='danger'>{error}</Message>
                         :
                             <>
-                                <PlayerInfo profile={player} />
+                                <PlayerInfo profile={player} isAdmin={userInfo.is_staff}/>
 
                                 <Tabs defaultActiveKey='rooms' id='player-details' className='mb-3'>
                                     <Tab eventKey='rooms' title='Rooms'>
