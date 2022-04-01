@@ -37,6 +37,9 @@ export default () => {
                                 <LinkContainer to='/admin/profile'>
                                     <Nav.Link>Profile</Nav.Link>
                                 </LinkContainer>
+                                <LinkContainer to='/admin/fund'>
+                                    <Nav.Link>Fund</Nav.Link>
+                                </LinkContainer>
                                 <LinkContainer to='/admin/admins'>
                                     <Nav.Link>Admins</Nav.Link>
                                 </LinkContainer>

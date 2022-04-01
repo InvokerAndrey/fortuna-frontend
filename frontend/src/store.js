@@ -51,6 +51,9 @@ import {
     roomSessionsStatisticsReducer,
     sessionsStatisticsReducer,
 } from './player/reducers/sessionReducers'
+import {
+    fundDetailsReducer,
+} from './admin/reducers/fundReducers'
 
 
 const reducer = combineReducers({
@@ -91,6 +94,8 @@ const reducer = combineReducers({
     sessionCreate: sessionCreateReducer,
     roomSessionsStatistics: roomSessionsStatisticsReducer,
     sessionsStatistics: sessionsStatisticsReducer,
+
+    fundDetails: fundDetailsReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ?
