@@ -91,7 +91,11 @@ export default ({userID, showAdd}) => {
                                                     <tr key={transaction.id}>
                                                         <td>{transaction.id}</td>
                                                         <td>{PlayerTransactionTypeEnum.getVerboseById(transaction.type)}</td>
-                                                        <td>${transaction.amount}</td>
+                                                        {
+                                                            transaction.type === PlayerTransactionTypeEnum.PLAYER_TO_ADMIN_PROFIT ?
+                                                                <td>{transaction.admin_share}/{transaction.player_share}$</td>
+                                                                : <td>${transaction.amount}</td>
+                                                        }
                                                         <td>{transaction.admin}</td>
                                                         <td>{moment(transaction.created_at).format('DD.MM.YYYY')}</td>
                                                     </tr>
