@@ -43,6 +43,7 @@ import SessionDetailsScreen from './player/screens/SessionDetailsScreen'
 import SessionCreateScreen from './player/screens/SessionCreateScreen'
 
 import FundScreen from './admin/screens/fund/FundScreen'
+import AddFundTransactionScreen from './admin/screens/fund/AddFundTransactionScreen'
 
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
                   <Route path='/add/player-room/:id' element={<AddPlayerRoomScreen />} />
                   <Route path='/admin/players/:player_id/room/:room_id' element={<PlayerRoomStatisticsScreen />} />
                   <Route path='/admin/fund' element={<FundScreen />} />
+                  <Route path='/admin/fund/add/fund-transaction' element={<AddFundTransactionScreen />} />
                 </>
               )
             }

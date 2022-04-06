@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { Form, Button, InputGroup } from 'react-bootstrap'
 
-import { PLAYER_ADD_TRANSACTION_RESET } from '../../constants/playerConstants'
+import { FUND_ADD_TRANSACTION_RESET } from '../../constants/fundConstants'
 
-import { PlayerTransactionTypeEnum } from '../../../constants/enums'
+import { FundTransactionTypeEnum } from '../../../constants/enums'
 import TransactionService from '../../services/TransactionService'
 import Loader from '../../../components/Loader'
 import Message from '../../../components/Message'
@@ -21,10 +21,6 @@ export default () => {
 
     const navigate = useNavigate()
 
-    const { id } = useParams()
-
-    const player_id = id
-
     const redirect = Location.search ? Location.search.split('=')[1] : '/'
 
     const [type, setType] = useState(0)
@@ -34,8 +30,8 @@ export default () => {
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
 
-    const playerAddTransaction = useSelector(state => state.playerAddTransaction)
-    const {loading: loadingTransaction, error: errorTransaction, success: successTransaction} = playerAddTransaction
+    const fundAddTransaction = useSelector(state => state.fundAddTransaction)
+    const {loading: loadingTransaction, error: errorTransaction, success: successTransaction} = fundAddTransaction
 
     useEffect(() => {
         if (!userInfo.is_staff) {
@@ -45,8 +41,8 @@ export default () => {
 
     useEffect(() => {
         if (successTransaction) {
-            dispatch({type: PLAYER_ADD_TRANSACTION_RESET})
-            navigate(`/admin/players/${player_id}`)
+            dispatch({type: FUND_ADD_TRANSACTION_RESET})
+            navigate(`/admin/fund`)
         }
     }, [dispatch, successTransaction, navigate])
 
@@ -55,7 +51,7 @@ export default () => {
         if (amount <= 0) {
             setMessage('Invalid amount')
         } else {
-            dispatch(transactionService.addPlayerTransaction(player_id, type, amount))
+            dispatch(transactionService.addFundTransaction(type, amount))
         }
     }
 
@@ -65,7 +61,7 @@ export default () => {
                 Back
         </Button>
         <FormContainer>
-            <h1>Add Player Transaction</h1>
+            <h1>Add Fund Transaction</h1>
             {errorTransaction && <Message variant='danger'>{errorTransaction}</Message>}
             {message && <Message variant='danger'>{message}</Message>}
             {loadingTransaction && <Loader />}
@@ -80,9 +76,9 @@ export default () => {
                     >
                         <option value={''}></option>
                         {
-                            [...PlayerTransactionTypeEnum.getIdList()].map((x) => (
+                            [...FundTransactionTypeEnum.getIdList()].map((x) => (
                                 <option key={x} value={x}>
-                                    {PlayerTransactionTypeEnum.getVerboseById(x)}
+                                    {FundTransactionTypeEnum.getVerboseById(x)}
                                 </option>
                             ))
                         }

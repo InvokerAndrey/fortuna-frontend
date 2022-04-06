@@ -57,3 +57,19 @@ export class PlayerTransactionTypeEnum extends Enum {
         return this.obj.PLAYER_TO_ADMIN_PROFIT.id
     }
 }
+
+
+export class FundTransactionTypeEnum extends Enum {
+    static obj = {
+        DEPOSIT: {id: 1, verbose: 'Deposit'},
+        WITHDRAWAL: {id: 2, verbose: 'Withdrawal'},
+    }
+
+    static get DEPOSIT() {
+        return this.obj.DEPOSIT.id
+    }
+
+    static get WITHDRAWAL() {
+        return this.obj.WITHDRAWAL.id
+    }
+}

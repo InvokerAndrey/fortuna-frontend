@@ -10,7 +10,6 @@ import {
     playerAddTransactionReducer,
     playerListPlayerTransactionsReducer,
     playerListRoomTransactionsReducer,
-    playerAddPlayerRoomReducer,
 } from './admin/reducers/playerReducers'
 import {
     roomListReducer,
@@ -53,6 +52,8 @@ import {
 } from './player/reducers/sessionReducers'
 import {
     fundDetailsReducer,
+    fundTransactionListReducer,
+    fundAddTransactionReducer,
 } from './admin/reducers/fundReducers'
 
 
@@ -96,6 +97,8 @@ const reducer = combineReducers({
     sessionsStatistics: sessionsStatisticsReducer,
 
     fundDetails: fundDetailsReducer,
+    fundTransactionList: fundTransactionListReducer,
+    fundAddTransaction: fundAddTransactionReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ?
