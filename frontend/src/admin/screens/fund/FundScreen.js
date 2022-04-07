@@ -38,7 +38,7 @@ export default () => {
                         </ListGroup.Item>
                         <ListGroup.Item>
                             Admins:
-                            <ul>
+                            <ul style={{cursor: 'pointer', color: '#0a74ff'}}>
                                 {fund.admins.map(admin => (
                                     <LinkContainer to={`/admin/admins/${admin.id}`}>
                                         <li key={admin.id}>

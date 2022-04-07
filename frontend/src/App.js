@@ -8,7 +8,6 @@ import { Container } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Header from './components/Header'
-import Footer from './components/Footer'
 
 import HomeScreen from './admin/screens/HomeScreen'
 

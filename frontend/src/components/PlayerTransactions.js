@@ -93,7 +93,12 @@ export default ({userID, showAdd}) => {
                                                         <td>{PlayerTransactionTypeEnum.getVerboseById(transaction.type)}</td>
                                                         {
                                                             transaction.type === PlayerTransactionTypeEnum.PLAYER_TO_ADMIN_PROFIT ?
-                                                                <td>{transaction.admin_share}/{transaction.player_share}$</td>
+                                                                <td>
+                                                                    <span style={{cursor: 'default'}} title='admin part'>{transaction.admin_share}</span>
+                                                                    /
+                                                                    <span style={{cursor: 'default'}} title='player part'>{transaction.player_share}</span>
+                                                                    $
+                                                                </td>
                                                                 : <td>${transaction.amount}</td>
                                                         }
                                                         <td>{transaction.admin}</td>
