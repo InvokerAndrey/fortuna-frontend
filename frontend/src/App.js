@@ -67,6 +67,7 @@ function App() {
                   <Route path='/admin/rooms' element={<RoomListScreen />} />
                   <Route path='/admin/rooms/:id' element={<RoomDetailsScreen />} />
                   <Route path='/admin/admins' element={<AdminListScreen />} />
+                  <Route path='/admin/admins/:id' element={<AdminDetailsScreen />} />
                   <Route path='/register/admin' element={<AdminRegisterScreen />} />
                   <Route path='/register/player' element={<PlayerRegisterScreen />} />
                   <Route path='/add/room' element={<RoomAddScreen />} />

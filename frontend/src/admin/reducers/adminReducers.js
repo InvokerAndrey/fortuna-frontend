@@ -6,6 +6,7 @@ import {
     ADMIN_DETAILS_REQUEST,
     ADMIN_DETAILS_SUCCESS,
     ADMIN_DETAILS_FAIL,
+    ADMIN_DETAILS_RESET,
 
     ADMIN_REGISTER_REQUEST,
     ADMIN_REGISTER_SUCCESS,
@@ -36,7 +37,7 @@ export const adminListReducer = (state={admins:[]}, action) => {
 }
 
 
-export const adminDetailsReducer = (state={admin:{user:{}, fund:{}}}, action) => {
+export const adminDetailsReducer = (state={admin:{user:{}, player_transactions:[]}}, action) => {
     switch(action.type) {
         case ADMIN_DETAILS_REQUEST:
             return {loading: true, ...state}
@@ -44,6 +45,8 @@ export const adminDetailsReducer = (state={admin:{user:{}, fund:{}}}, action) =>
             return {loading: false, admin: action.payload}
         case ADMIN_DETAILS_FAIL:
             return {loading: false, error: action.payload}
+        case ADMIN_DETAILS_RESET:
+            return {admin:{user:{}, player_transactions:[]}}
         default:
             return state
     }

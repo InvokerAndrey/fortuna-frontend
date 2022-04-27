@@ -70,7 +70,7 @@ export default class AdminService {
                 }
             }
 
-            const {data} = await axios.get(this.BASE_URL + `${id}`, config)
+            const {data} = await axios.get(this.BASE_URL + `${id}/profile/`, config)
 
             dispatch({
                 type: ADMIN_DETAILS_SUCCESS,
